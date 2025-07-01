@@ -24,3 +24,24 @@ LinkedList* createLinkedList() {
     list->size = 0;
     return list;
 }
+
+void pushBack(LinkedList* list, int value) {
+    Node* node = malloc(sizeof(Node));
+    if (node == NULL) {
+        return;
+    }
+    node->data = value;
+    node->next = NULL;
+
+    if (list->head == NULL) {
+        list->head = node;
+    } else {
+        Node* current = list->head;
+
+        while (current->next != NULL) {
+            current = current->next;
+        }
+
+        current->next = node;
+    }
+}
