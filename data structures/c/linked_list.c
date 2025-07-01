@@ -28,16 +28,17 @@ LinkedList* createLinkedList() {
 void pushBack(LinkedList* list, int value) {
     Node* node = malloc(sizeof(Node));
     if (node == NULL) {
-        return;
+        return; // Memory allocation failed
     }
     node->data = value;
     node->next = NULL;
 
     if (list->head == NULL) {
+        // If list is empty, new node becomes the head
         list->head = node;
     } else {
+        // Traverse to the end and add the node
         Node* current = list->head;
-
         while (current->next != NULL) {
             current = current->next;
         }
