@@ -15,6 +15,7 @@ LinkedList* createLinkedList();
 void pushBack(LinkedList* list, int value);
 void pushFront(LinkedList* list, int value);
 void printList(LinkedList* list);
+int size(LinkedList* list);
 
 int main(void) {
     LinkedList* list = createLinkedList();
@@ -24,6 +25,7 @@ int main(void) {
     pushBack(list, 5);
 
     printList(list);
+    printf("%i", size(list));
 }
 
 LinkedList* createLinkedList() {
@@ -86,4 +88,12 @@ void printList(LinkedList* list) {
         printf("%i\n", current->data);
         current = current->next;
     }
+}
+
+//  Returns the current number of elements in the linked list.
+int size(LinkedList* list) {
+    if (list == NULL) {
+        return 0;
+    }
+    return list->size;
 }
