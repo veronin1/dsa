@@ -10,8 +10,10 @@ typedef struct LinkedList {
     int size;
 } LinkedList;
 
+LinkedList* createLinkedList();
+
 int main(void) {
-    return 0;
+    LinkedList* list = createLinkedList();
 }
 
 LinkedList* createLinkedList() {
