@@ -18,7 +18,12 @@ void printList(LinkedList* list);
 
 int main(void) {
     LinkedList* list = createLinkedList();
+    pushFront(list, 2);
+    pushFront(list, 99);
     pushBack(list, 3);
+    pushBack(list, 5);
+
+    printList(list);
 }
 
 LinkedList* createLinkedList() {
@@ -31,6 +36,7 @@ LinkedList* createLinkedList() {
     return list;
 }
 
+// Adds the element `value` to the end of the linked list
 void pushBack(LinkedList* list, int value) {
     Node* node = malloc(sizeof(Node));
     if (node == NULL) {
@@ -56,6 +62,7 @@ void pushBack(LinkedList* list, int value) {
     list->size++;
 }
 
+// Inserts the element `value` at the beginning of the linked list
 void pushFront(LinkedList* list, int value) {
     Node* node = malloc(sizeof(Node));
     if (node == NULL) {
@@ -71,6 +78,7 @@ void pushFront(LinkedList* list, int value) {
     list->size++;
 }
 
+// Prints the entire linked list from beginning to end.
 void printList(LinkedList* list) {
     Node* current = list->head;
 
