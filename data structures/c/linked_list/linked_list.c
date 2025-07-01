@@ -14,16 +14,11 @@ typedef struct LinkedList {
 LinkedList* createLinkedList();
 void pushBack(LinkedList* list, int value);
 void pushFront(LinkedList* list, int value);
+void printList(LinkedList* list);
 
 int main(void) {
     LinkedList* list = createLinkedList();
     pushBack(list, 3);
-
-    Node* current = list->head;
-    while (current != NULL) {
-        printf("%i\n", current->data);
-        current = current->next;
-    }
 }
 
 LinkedList* createLinkedList() {
@@ -76,4 +71,11 @@ void pushFront(LinkedList* list, int value) {
     list->size++;
 }
 
-void printList(LinkedList* list);
+void printList(LinkedList* list) {
+    Node* current = list->head;
+
+    while (current != NULL) {
+        printf("%i\n", current->data);
+        current = current->next;
+    }
+}
