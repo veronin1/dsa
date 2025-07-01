@@ -1,13 +1,15 @@
 #include <stdio.h>
 
-typedef struct node {
+typedef struct Node {
     int data;
-    struct node* next;
+    struct Node* next;
 } Node;
+
+typedef struct LinkedList {
+    Node* head;
+    int size;
+} LinkedList;
 
 int main(void) {
     return 0;
 }
-
-/* void push_front(LinkedList* list, int value) {
-} */
