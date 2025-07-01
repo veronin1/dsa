@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct Node {
@@ -11,9 +12,17 @@ typedef struct LinkedList {
 } LinkedList;
 
 LinkedList* createLinkedList();
+void pushBack(LinkedList* list, int value);
 
 int main(void) {
     LinkedList* list = createLinkedList();
+    pushBack(list, 3);
+
+    Node* current = list->head;
+    while (current != NULL) {
+        printf("%i\n", current->data);
+        current = current->next;
+    }
 }
 
 LinkedList* createLinkedList() {
@@ -21,6 +30,7 @@ LinkedList* createLinkedList() {
     if (list == NULL) {
         return NULL;
     }
+    list->head = NULL;
     list->size = 0;
     return list;
 }

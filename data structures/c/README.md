@@ -2,7 +2,7 @@
 
 The linked list is managed through the following functions:
 
-- `void push_back(LinkedList* list, int value)`  
+- `void pushBack(LinkedList* list, int value)`  
   Adds the element `value` to the end of the linked list.
 
 - `void push_front(LinkedList* list, int value)`  
