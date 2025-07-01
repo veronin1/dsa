@@ -58,5 +58,22 @@ void pushBack(LinkedList* list, int value) {
     }
 
     // Keep track of list size
-    list->size += 1;
+    list->size++;
 }
+
+void pushFront(LinkedList* list, int value) {
+    Node* node = malloc(sizeof(Node));
+    if (node == NULL) {
+        return; // Memory allocation failed
+    }
+    node->data = value;
+    node->next = NULL;
+
+    node->next = list->head;
+    list->head = node;
+
+    // Keep track of list size
+    list->size++;
+}
+
+void printList(LinkedList* list);

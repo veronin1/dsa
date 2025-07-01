@@ -5,8 +5,11 @@ The linked list is managed through the following functions:
 - `void pushBack(LinkedList* list, int value)`  
   Adds the element `value` to the end of the linked list.
 
-- `void push_front(LinkedList* list, int value)`  
+- `void pushFront(LinkedList* list, int value)`  
   Inserts the element `value` at the beginning of the linked list.
+
+- `void printList(LinkedList* list)`
+  Prints the entire linked list from beginning to end.
 
 - `int pop_back(LinkedList* list)`  
   Removes and returns the last element from the linked list.
