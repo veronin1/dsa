@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct Node {
     int data;
@@ -12,4 +12,13 @@ typedef struct LinkedList {
 
 int main(void) {
     return 0;
+}
+
+LinkedList* createLinkedList() {
+    LinkedList* list = malloc(sizeof(LinkedList));
+    if (list == NULL) {
+        return NULL;
+    }
+    list->size = 0;
+    return list;
 }
