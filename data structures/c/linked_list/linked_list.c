@@ -13,6 +13,7 @@ typedef struct LinkedList {
 
 LinkedList* createLinkedList();
 void pushBack(LinkedList* list, int value);
+void pushFront(LinkedList* list, int value);
 
 int main(void) {
     LinkedList* list = createLinkedList();
@@ -55,4 +56,7 @@ void pushBack(LinkedList* list, int value) {
 
         current->next = node;
     }
+
+    // Keep track of list size
+    list->size += 1;
 }
