@@ -112,7 +112,11 @@ int front(LinkedList* list) {
 // Return the last element without removing it
 int back(LinkedList* list) {
     if (list == NULL) {
-        return 1;
+        return -1;
+    }
+
+    if (list->head == NULL) {
+        return -1;
     }
 
     Node* current = list->head;
