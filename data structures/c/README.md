@@ -14,7 +14,7 @@ The linked list is managed through the following functions:
 
 - `int front(LinkedList* list)`: Returns the first element without removing it.
 
-- `int back(LinkedList* list)`: Returns the last element without removing it. (TODO)
+- `int back(LinkedList* list)`: Returns the last element without removing it.
 
 - `int empty(LinkedList* list)`: Returns `1` if the list is empty, otherwise `0`.
 
