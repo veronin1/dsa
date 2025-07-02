@@ -16,6 +16,7 @@ void pushBack(LinkedList* list, int value);
 void pushFront(LinkedList* list, int value);
 void printList(LinkedList* list);
 int size(LinkedList* list);
+int empty(LinkedList* list);
 
 int main(void) {
     LinkedList* list = createLinkedList();
@@ -96,4 +97,17 @@ int size(LinkedList* list) {
         return 0;
     }
     return list->size;
+}
+
+// Returns 1 if list is empty, otherwise 0
+int empty(LinkedList* list) {
+    if (list == NULL) {
+        return 1;
+    }
+
+    if (list->size > 0) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
