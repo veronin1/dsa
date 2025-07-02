@@ -17,6 +17,7 @@ void pushFront(LinkedList* list, int value);
 void printList(LinkedList* list);
 int size(LinkedList* list);
 int front(LinkedList* list);
+int back(LinkedList* list);
 int empty(LinkedList* list);
 
 int main(void) {
@@ -27,7 +28,7 @@ int main(void) {
     pushBack(list, 5);
 
     printList(list);
-    printf("%i", size(list));
+    printf("%i", back(list));
 }
 
 LinkedList* createLinkedList() {
@@ -106,6 +107,20 @@ int front(LinkedList* list) {
         return -1;
     }
     return list->head->data;
+}
+
+// Return the last element without removing it
+int back(LinkedList* list) {
+    if (list == NULL) {
+        return 1;
+    }
+
+    Node* current = list->head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+
+    return current->data;
 }
 
 // Returns 1 if list is empty, otherwise 0
