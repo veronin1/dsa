@@ -16,6 +16,7 @@ void pushBack(LinkedList* list, int value);
 void pushFront(LinkedList* list, int value);
 void printList(LinkedList* list);
 int size(LinkedList* list);
+int front(LinkedList* list);
 int empty(LinkedList* list);
 
 int main(void) {

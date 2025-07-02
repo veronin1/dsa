@@ -12,11 +12,11 @@ The linked list is managed through the following functions:
 
 - `int pop_front(LinkedList* list)`: Removes and returns the first element from the linked list. (TODO)
 
-- `int front(LinkedList* list)`: Returns the first element without removing it. (TODO)
+- `int front(LinkedList* list)`: Returns the first element without removing it.
 
 - `int back(LinkedList* list)`: Returns the last element without removing it. (TODO)
 
-- `int empty(LinkedList* list)`: Returns `1` if the list is empty, otherwise `0`. (TODO)
+- `int empty(LinkedList* list)`: Returns `1` if the list is empty, otherwise `0`.
 
 - `void clear(LinkedList* list)`: Removes all elements from the linked list, leaving it empty. (TODO)
 
