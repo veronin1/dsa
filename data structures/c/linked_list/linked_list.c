@@ -99,6 +99,14 @@ int size(LinkedList* list) {
     return list->size;
 }
 
+// Returns the first element without removing it.
+int front(LinkedList* list) {
+    if (list == NULL) {
+        return -1;
+    }
+    return list->head->data;
+}
+
 // Returns 1 if list is empty, otherwise 0
 int empty(LinkedList* list) {
     if (list == NULL) {
