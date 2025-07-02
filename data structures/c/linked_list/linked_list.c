@@ -105,7 +105,7 @@ int empty(LinkedList* list) {
         return 1;
     }
 
-    if (list->size > 0) {
+    if (list->size > 0 || list->head != NULL) {
         return 0;
     } else {
         return 1;
