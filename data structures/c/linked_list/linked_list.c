@@ -20,6 +20,7 @@ int front(LinkedList* list);
 int back(LinkedList* list);
 int empty(LinkedList* list);
 void clear(LinkedList* list);
+void removeValue(LinkedList* list, int value);
 
 int main(void) {
     LinkedList* list = createLinkedList();
@@ -85,7 +86,7 @@ void pushFront(LinkedList* list, int value) {
     list->size++;
 }
 
-// Prints the entire linked list from beginning to end.
+// Prints the entire linked list from beginning to end
 void printList(LinkedList* list) {
     Node* current = list->head;
 
@@ -95,7 +96,7 @@ void printList(LinkedList* list) {
     }
 }
 
-//  Returns the current number of elements in the linked list.
+//  Returns the current number of elements in the linked list
 int size(LinkedList* list) {
     if (list == NULL) {
         return 0;
@@ -103,7 +104,7 @@ int size(LinkedList* list) {
     return list->size;
 }
 
-// Returns the first element without removing it.
+// Returns the first element without removing it
 int front(LinkedList* list) {
     if (list == NULL) {
         return -1;
@@ -142,7 +143,7 @@ int empty(LinkedList* list) {
     }
 }
 
-// Removes all elements from the linked list, leaving it empty.
+// Removes all elements from the linked list, leaving it empty
 void clear(LinkedList* list) {
     if (list == NULL) {
         return;
@@ -154,4 +155,10 @@ void clear(LinkedList* list) {
         free(current);
         current = temp;
     }
+}
+
+// Removes the first occurrence of 'value' from the linked list
+void removeValue(LinkedList* list, int value) {
+    return;
+    return;
 }
