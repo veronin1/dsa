@@ -82,8 +82,16 @@ class LinkedList:
             current = current.next
         return current.data
 
+    # Returns true if the list is empty, otherwise false
     def empty(self):
         return not self.head
+
+    def clear(self):
+        
+    # Returns the current number of elements in the list
+    def size(self):
+        return self.size
+
 
 
 
