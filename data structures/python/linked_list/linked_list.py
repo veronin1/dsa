@@ -82,6 +82,10 @@ class LinkedList:
             current = current.next
         return current.data
 
+    def empty(self):
+        return not self.head
+
+
 
 def main():
     linked_list = LinkedList()
