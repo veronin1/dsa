@@ -55,6 +55,15 @@ class LinkedList:
         current.next = None
         self.size -= 1
         return
+    
+    def pop_front(self):
+        if not self.head:
+            return
+
+        front = self.head.data
+        self.head = self.head.next
+        self.size -= 1
+        return front
 
 
 def main():
