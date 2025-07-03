@@ -15,5 +15,5 @@ The linked list is managed through the following methods:
 - `back()`: Returns the last element without removing it.
 - `empty()`: Returns `True` if the list is empty, otherwise `False`.
 - `clear()`: Removes all elements from the linked list, leaving it empty.
-- `size()`: Returns the current number of elements in the linked list.
+- `len()`: Returns the current number of elements in the linked list.
 - `remove_value(value)`: Removes the first occurrence of `value` from the linked list.
