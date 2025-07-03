@@ -9,7 +9,7 @@ class LinkedList:
         self.head = None
         self.size = 0
 
-    # Adds the element `value` to the end of the linked list.
+    # Adds the element `value` to the end of the linked list
     def push_back(self, value):
         new_node = Node(value)
 
@@ -32,7 +32,7 @@ class LinkedList:
         self.size += 1
         return
 
-    # Prints the entire linked list from beginning to end.
+    # Prints the entire linked list from beginning to end
     def print_list(self):
         current = self.head
         while current is not None:
@@ -40,7 +40,7 @@ class LinkedList:
             current = current.next
         return
 
-    # Removes and returns the last element from the linked list.
+    # Removes and returns the last element from the linked list
     def pop_back(self):
         if not self.head:
             return None
@@ -66,12 +66,13 @@ class LinkedList:
         self.size -= 1
         return front
 
-    # Returns the first element without removing it.
+    # Returns the first element without removing it
     def front(self):
         if not self.head:
             return None
         return self.head.data
 
+    # Returns the last element without removing it
     def back(self):
         if not self.head:
             return None
