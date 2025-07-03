@@ -18,8 +18,8 @@ The linked list is managed through the following functions:
 
 - `int empty(LinkedList* list)`: Returns `1` if the list is empty, otherwise `0`.
 
-- `void clear(LinkedList* list)`: Removes all elements from the linked list, leaving it empty. (TODO)
+- `void clear(LinkedList* list)`: Removes all elements from the linked list, leaving it empty.
 
 - `int size(LinkedList* list)`: Returns the current number of elements in the linked list.
 
-- `void remove_value(LinkedList* list, int value)`: Removes the first occurrence of `value` from the linked list. (TODO)
+- `void remove_value(LinkedList* list, int value)`: Removes the first occurrence of `value` from the linked list.
