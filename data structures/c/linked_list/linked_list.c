@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -30,7 +31,7 @@ int main(void) {
     pushBack(list, 5);
 
     printList(list);
-    clear(list);
+    removeValue(list, 3);
     printList(list);
 }
 
@@ -159,6 +160,23 @@ void clear(LinkedList* list) {
 
 // Removes the first occurrence of 'value' from the linked list
 void removeValue(LinkedList* list, int value) {
-    return;
-    return;
+    if (list == NULL || list->head == NULL) {
+        return;
+    }
+
+    Node* current = list->head;
+    Node* prev = NULL;
+    while (current != NULL) {
+        if (current->data == value) {
+            if (prev == NULL) {
+                list->head = current->next;
+            } else {
+                prev->next = current->next;
+            }
+            free(current);
+            return;
+        }
+        prev = current;
+        current = current->next;
+    }
 }
