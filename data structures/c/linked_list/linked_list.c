@@ -182,6 +182,8 @@ void clear(LinkedList* list) {
         free(current);
         current = temp;
     }
+    list->head = NULL;
+    list->size = 0;
 }
 
 //  Returns the current number of elements in the linked list
