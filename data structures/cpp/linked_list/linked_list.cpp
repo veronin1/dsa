@@ -1,7 +1,10 @@
+#include <cstddef>
+#include <memory>
+
 class Node {
  private:
   int data;
-  Node* next;
+  std::unique_ptr<Node> next;
 
   // Give LinkedList access to private members
   friend class LinkedList;
@@ -12,7 +15,7 @@ class Node {
 
 class LinkedList {
  private:
-  Node* head;
+  std::unique_ptr<Node> head;
   int size;
 
  public:
