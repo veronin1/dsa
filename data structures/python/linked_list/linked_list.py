@@ -37,6 +37,11 @@ class LinkedList:
         self.head = new_node
         self.size += 1
 
+    def print_list(self):
+        current = self.head
+        while current is not None:
+            print(current.data)
+
 
 
 
