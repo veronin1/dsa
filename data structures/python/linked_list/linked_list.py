@@ -86,8 +86,12 @@ class LinkedList:
     def empty(self):
         return not self.head
 
+    # Removes all elements from the list (Python does this for you)
     def clear(self):
-        
+        self.head = None
+        self.size = 0
+        return
+
     # Returns the current number of elements in the list
     def size(self):
         return self.size
