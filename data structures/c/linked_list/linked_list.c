@@ -41,7 +41,7 @@ LinkedList* createLinkedList() {
     return list;
 }
 
-// Adds the element `value` to the end of the linked list
+// Inserts element at the end of the linked list
 void pushBack(LinkedList* list, int value) {
     Node* node = malloc(sizeof(Node));
     if (node == NULL) {
@@ -67,7 +67,7 @@ void pushBack(LinkedList* list, int value) {
     list->size++;
 }
 
-// Inserts the element `value` at the beginning of the linked list
+// Inserts element at the beginning of the linked list
 void pushFront(LinkedList* list, int value) {
     Node* node = malloc(sizeof(Node));
     if (node == NULL) {
