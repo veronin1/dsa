@@ -159,15 +159,9 @@ int back(LinkedList* list) {
 
 // Returns 1 if list is empty, otherwise 0
 int empty(LinkedList* list) {
-    if (list == NULL) {
+    if (list == NULL)
         return 1;
-    }
-
-    if (list->size > 0 || list->head != NULL) {
-        return 0;
-    } else {
-        return 1;
-    }
+    return (list->size == 0);
 }
 
 // Removes all elements from the linked list, leaving it empty
