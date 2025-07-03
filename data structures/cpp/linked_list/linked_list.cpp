@@ -1,5 +1,5 @@
-#include <cstddef>
 #include <memory>
+#include <utility>
 
 class Node {
  private:
@@ -20,4 +20,22 @@ class LinkedList {
 
  public:
   LinkedList() : head(nullptr), size(0) {}
+
+  void pushBack(int value) {
+    // unique ptr
+    auto newNode = std::make_unique<Node>(value);
+
+    if (!head) {
+      head = std::move(newNode);
+    } else {
+      Node* current = head.get();
+
+      while (current != nullptr) {
+        current = current->next.get();
+      }
+
+      current->next = std::move(newNode);
+    }
+    ++size;
+  }
 };
