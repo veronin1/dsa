@@ -33,7 +33,7 @@ int main(void) {
     pushBack(list, 5);
 
     printList(list);
-    removeValue(list, 3);
+    popFront(list);
     printList(list);
 }
 
@@ -99,16 +99,30 @@ void printList(LinkedList* list) {
     }
 }
 
+//  Removes and returns the last element from the list
 int popBack(LinkedList* list) {
+    if (list == NULL || list->head == NULL) {
+        return -1;
+    }
     return 0;
 }
+
+// Removes and returns the first element from the list
 int popFront(LinkedList* list) {
-    return 0;
+    if (list == NULL || list->head == NULL) {
+        return -1;
+    }
+
+    int front = list->head->data;
+    Node* temp = list->head->next;
+    free(list->head);
+    list->head = temp;
+    return front;
 }
 
 // Returns the first element without removing it
 int front(LinkedList* list) {
-    if (list == NULL) {
+    if (list == NULL || list->head == NULL) {
         return -1;
     }
     return list->head->data;
