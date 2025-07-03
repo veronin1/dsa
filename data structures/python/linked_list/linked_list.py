@@ -32,6 +32,7 @@ class LinkedList:
         self.size += 1
         return
 
+    # Prints the entire linked list from beginning to end.
     def print_list(self):
         current = self.head
         while current is not None:
@@ -39,6 +40,7 @@ class LinkedList:
             current = current.next
         return
 
+    # Removes and returns the last element from the linked list.
     def pop_back(self):
         if not self.head:
             return
