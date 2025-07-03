@@ -33,7 +33,7 @@ int main(void) {
     pushBack(list, 5);
 
     printList(list);
-    popBack(list);
+    printf("Back: %i\n", popBack(list));
     printList(list);
 }
 
@@ -113,7 +113,7 @@ int popBack(LinkedList* list) {
     back = current->next->data;
     free(current->next);
     current->next = NULL;
-
+    list->size--;
     return back;
 }
 
@@ -127,6 +127,7 @@ int popFront(LinkedList* list) {
     Node* temp = list->head->next;
     free(list->head);
     list->head = temp;
+    list->size--;
     return front;
 }
 
@@ -207,6 +208,7 @@ void removeValue(LinkedList* list, int value) {
                 prev->next = current->next;
             }
             free(current);
+            list->size--;
             return;
         }
         prev = current;
