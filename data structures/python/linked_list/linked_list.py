@@ -5,7 +5,7 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self, head, size):
+    def __init__(self, head=None, size=0):
         self.head = None
         self.size = 0
 
@@ -55,7 +55,7 @@ class LinkedList:
         current.next = None
         self.size -= 1
         return
-    
+
     # Removes and returns the first element from the linked list
     def pop_front(self):
         if not self.head:
@@ -76,7 +76,7 @@ class LinkedList:
     def back(self):
         if not self.head:
             return None
-        
+
         current = self.head
         while current.next is not None:
             current = current.next
@@ -96,8 +96,11 @@ class LinkedList:
     def size(self):
         return self.size
 
+    def remove_value(self, value): ...
 
 
+def main(): ...
 
-def main():
-    linked_list = LinkedList()
+
+if __name__ == "__main__":
+    main()
