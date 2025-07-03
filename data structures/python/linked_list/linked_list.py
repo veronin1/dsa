@@ -43,11 +43,11 @@ class LinkedList:
     # Removes and returns the last element from the linked list.
     def pop_back(self):
         if not self.head:
-            return
+            return None
 
         if self.head.next is None:
             self.head = None
-            return
+            return None
 
         current = self.head
         while current.next.next is not None:
@@ -59,17 +59,27 @@ class LinkedList:
     # Removes and returns the first element from the linked list
     def pop_front(self):
         if not self.head:
-            return
+            return None
 
         front = self.head.data
         self.head = self.head.next
         self.size -= 1
         return front
 
+    # Returns the first element without removing it.
     def front(self):
         if not self.head:
-            return
+            return None
         return self.head.data
+
+    def back(self):
+        if not self.head:
+            return None
+        
+        current = self.head
+        while current.next is not None:
+            current = current.next
+        return current.data
 
 
 def main():
