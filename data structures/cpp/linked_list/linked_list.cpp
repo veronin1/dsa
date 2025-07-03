@@ -1,6 +1,8 @@
 #include <algorithm>
+#include <cstddef>
 #include <iostream>
 #include <memory>
+#include <ostream>
 #include <utility>
 
 class Node {
@@ -52,4 +54,30 @@ class LinkedList {
     }
     ++size;
   }
+
+  void printList() {
+    if (!head) {
+      return;
+    } else {
+      Node* current = head.get();
+
+      while (current != nullptr) {
+        std::cout << current->data;
+        if (current->next != nullptr) {
+          std::cout << ", ";
+        }
+        current = current->next.get();
+      }
+      std::cout << std::endl;
+    }
+  }
 };
+
+int main(void) {
+  LinkedList list;
+
+  list.pushBack(30);
+  list.pushFront(25);
+  list.pushFront(50);
+  list.printList();
+}
