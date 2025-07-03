@@ -96,7 +96,22 @@ class LinkedList:
     def size(self):
         return self.size
 
-    def remove_value(self, value): ...
+    # Removes the first occurence of value from the linked list
+    def remove_value(self, value):
+        if not self.head:
+            return None
+
+        current = self.head
+
+        if self.head.data == value:
+            self.head = self.head.next
+
+        while current.data != value
+            prev = current
+            current = current.next
+        prev.next = current.next
+
+        
 
 
 def main(): ...
