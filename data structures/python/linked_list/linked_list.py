@@ -56,6 +56,7 @@ class LinkedList:
         self.size -= 1
         return
     
+    # Removes and returns the first element from the linked list
     def pop_front(self):
         if not self.head:
             return
@@ -64,6 +65,11 @@ class LinkedList:
         self.head = self.head.next
         self.size -= 1
         return front
+
+    def front(self):
+        if not self.head:
+            return
+        return self.head.data
 
 
 def main():
