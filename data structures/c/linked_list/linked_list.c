@@ -33,7 +33,7 @@ int main(void) {
     pushBack(list, 5);
 
     printList(list);
-    popFront(list);
+    popBack(list);
     printList(list);
 }
 
@@ -104,7 +104,17 @@ int popBack(LinkedList* list) {
     if (list == NULL || list->head == NULL) {
         return -1;
     }
-    return 0;
+
+    Node* current = list->head;
+    int back = 0;
+    while (current->next->next != NULL) {
+        current = current->next;
+    }
+    back = current->next->data;
+    free(current->next);
+    current->next = NULL;
+
+    return back;
 }
 
 // Removes and returns the first element from the list

@@ -8,9 +8,9 @@ The linked list is managed through the following functions:
 
 - `void printList(LinkedList* list)`: Prints the entire linked list from beginning to end.
 
-- `int pop_back(LinkedList* list)`: Removes and returns the last element from the linked list. (TODO)
+- `int popBack(LinkedList* list)`: Removes and returns the last element from the linked list.
 
-- `int pop_front(LinkedList* list)`: Removes and returns the first element from the linked list. (TODO)
+- `int popFront(LinkedList* list)`: Removes and returns the first element from the linked list.
 
 - `int front(LinkedList* list)`: Returns the first element without removing it.
 
