@@ -94,9 +94,13 @@ void printList(LinkedList* list) {
     Node* current = list->head;
 
     while (current != NULL) {
-        printf("%i\n", current->data);
+        printf("%i", current->data);
+        if (current->next != NULL) {
+            printf(", ");
+        }
         current = current->next;
     }
+    printf("\n");
 }
 
 //  Removes and returns the last element from the list
