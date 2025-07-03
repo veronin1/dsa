@@ -46,15 +46,18 @@ class LinkedList:
             return None
 
         if self.head.next is None:
+            back = self.head.data
             self.head = None
-            return None
+            self.size -= 1
+            return back
 
         current = self.head
         while current.next.next is not None:
             current = current.next
+        back = current.next.data
         current.next = None
         self.size -= 1
-        return
+        return back
 
     # Removes and returns the first element from the linked list
     def pop_front(self):
@@ -93,25 +96,29 @@ class LinkedList:
         return
 
     # Returns the current number of elements in the list
-    def size(self):
+    def __len__(self):
         return self.size
 
     # Removes the first occurence of value from the linked list
     def remove_value(self, value):
         if not self.head:
-            return None
-
-        current = self.head
+            return
 
         if self.head.data == value:
             self.head = self.head.next
+            self.size -= 1
+            return
 
-        while current.data != value
+        prev = self.head
+        current = self.head.next
+
+        while current:
+            if current.data == value:
+                prev.next = current.next
+                self.size -= 1
+                return
             prev = current
             current = current.next
-        prev.next = current.next
-
-        
 
 
 def main(): ...
