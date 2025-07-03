@@ -105,8 +105,17 @@ int popBack(LinkedList* list) {
         return -1;
     }
 
-    Node* current = list->head;
+    // If list has only 1 element
     int back = 0;
+    if (list->head->next == NULL) {
+        back = list->head->data;
+        free(list->head);
+        list->head = NULL;
+        list->size = 0;
+        return back;
+    }
+
+    Node* current = list->head;
     while (current->next->next != NULL) {
         current = current->next;
     }
