@@ -19,6 +19,7 @@ int size(LinkedList* list);
 int front(LinkedList* list);
 int back(LinkedList* list);
 int empty(LinkedList* list);
+void clear(LinkedList* list);
 
 int main(void) {
     LinkedList* list = createLinkedList();
@@ -28,7 +29,8 @@ int main(void) {
     pushBack(list, 5);
 
     printList(list);
-    printf("%i", back(list));
+    clear(list);
+    printList(list);
 }
 
 LinkedList* createLinkedList() {
@@ -137,5 +139,19 @@ int empty(LinkedList* list) {
         return 0;
     } else {
         return 1;
+    }
+}
+
+// Removes all elements from the linked list, leaving it empty.
+void clear(LinkedList* list) {
+    if (list == NULL) {
+        return;
+    }
+
+    Node* current = list->head;
+    while (current != NULL) {
+        Node* temp = current->next;
+        free(current);
+        current = temp;
     }
 }
