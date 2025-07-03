@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <iostream>
 #include <memory>
 #include <utility>
 
@@ -35,6 +37,18 @@ class LinkedList {
       }
 
       current->next = std::move(newNode);
+    }
+    ++size;
+  }
+
+  void pushFront(int value) {
+    auto newNode = std::make_unique<Node>(value);
+
+    if (!head) {
+      head = std::move(newNode);
+    } else {
+      newNode->next = std::move(this->head);
+      this->head = std::move(newNode);
     }
     ++size;
   }
