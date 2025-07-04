@@ -20,6 +20,10 @@ The linked list is managed through the following methods:
 
 ## Compilation
 
+```sh
+python main.py
+```
+
 ## Usage
 
 ```py
