@@ -18,6 +18,8 @@ The linked list is managed through the following methods:
 - `len()`: Returns the current number of elements in the linked list.
 - `remove_value(value)`: Removes the first occurrence of `value` from the linked list.
 
+## Compilation
+
 ## Usage
 
 ```py
