@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <iostream>
 #include <memory>
 #include <ostream>
@@ -135,6 +136,15 @@ class LinkedList {
   }
 
   bool empty() const { return !head; }
+
+  void clear() {
+    Node* current = head.get();
+    while (current) {
+      Node* temp = current;
+      current = current->next.get();
+      delete temp;
+    }
+  }
 };
 
 int main(void) {
