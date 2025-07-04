@@ -1,6 +1,6 @@
 # LinkedList (Python)
 
-A linked list is a data structure in which each node in the sequence points to the next.
+A linked list is a dynamic data structure where each element (node) contains a value and a reference to the next node in the sequence. This Python implementation provides fundamental functionalities for managing a singly linked list, including insertion, deletion, traversal, and utility operations.
 
 ## Interface
 
