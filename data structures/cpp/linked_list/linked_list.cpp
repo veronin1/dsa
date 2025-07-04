@@ -141,7 +141,7 @@ class LinkedList {
     size = 0;
   }
 
-  int getSize() { return size; }
+  int getSize() const { return size; }
 
   void removeValue(int value) {
     if (!head) {
@@ -150,7 +150,8 @@ class LinkedList {
 
     if (head->data == value) {
       if (!head->next) {
-        head.reset();
+        head = std::move(head->next);
+        --size;
         return;
       }
     }
@@ -162,6 +163,7 @@ class LinkedList {
 
     if (current->next && current->next->data == value) {
       current->next = std::move(current->next->next);
+      --size;
     } else {
       throw std::runtime_error("Value not found");
     }
