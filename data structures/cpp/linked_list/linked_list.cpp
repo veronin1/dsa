@@ -114,6 +114,13 @@ class LinkedList {
       }
     }
   }
+
+  int front() {
+    if (!head) {
+      throw std::runtime_error("Empty list!");
+    }
+    return head->data;
+  }
 };
 
 int main(void) {
