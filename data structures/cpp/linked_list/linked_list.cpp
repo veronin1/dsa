@@ -141,6 +141,8 @@ class LinkedList {
     head.reset();
     size = 0;
   }
+
+  int getSize() { return size; }
 };
 
 int main(void) {
