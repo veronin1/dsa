@@ -2,7 +2,7 @@
 
 A **linked list** is a dynamic data structure where each element (node) contains a value and a pointer to the next node in the sequence. This implementation uses modern C++ features such as `std::unique_ptr` for memory safety and automatic resource management.
 
-## Usage
+## Interface
 
 The linked list is managed through the following methods:
 
@@ -18,7 +18,7 @@ The linked list is managed through the following methods:
 - `int getSize() const`: Returns the current number of elements in the list.
 - `void removeValue(int value)`: Removes the first occurrence of `value` from the list. Throws if the value is not found.
 
-## Example
+## Usage
 
 ```cpp
 int main() {
