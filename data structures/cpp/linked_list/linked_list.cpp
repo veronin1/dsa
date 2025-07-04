@@ -91,7 +91,7 @@ class LinkedList {
         current = current->next.get();
       }
       auto back = current->data;
-      prev->next = nullptr;
+      prev->next.reset();
       --size;
       return back;
     }
