@@ -1,8 +1,7 @@
-#include <algorithm>
-#include <cstddef>
 #include <iostream>
 #include <memory>
 #include <ostream>
+#include <stdexcept>
 #include <utility>
 
 class Node {
@@ -71,13 +70,38 @@ class LinkedList {
       std::cout << std::endl;
     }
   }
+
+  int popBack() {
+    if (!head) {
+      throw std::runtime_error("Cannot pop from an empty list");
+    } else {
+      Node* current = head.get();
+
+      auto prev = current;
+
+      if (current->next == nullptr) {
+        auto back = head->data;
+        head = nullptr;
+        --size;
+        return back;
+      }
+
+      while (current->next != nullptr) {
+        prev = current;
+        current = current->next.get();
+      }
+      auto back = current->data;
+      prev->next = nullptr;
+      --size;
+      return back;
+    }
+  }
 };
 
 int main(void) {
   LinkedList list;
 
-  list.pushBack(30);
-  list.pushFront(25);
-  list.pushFront(50);
-  list.printList();
+  list.pushFront(33);
+
+  std::cout << "REMOVED: " << list.popBack();
 }
