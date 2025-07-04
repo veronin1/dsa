@@ -33,7 +33,7 @@ class LinkedList {
     } else {
       Node* current = head.get();
 
-      while (current != nullptr) {
+      while (current->next != nullptr) {
         current = current->next.get();
       }
 
@@ -96,12 +96,33 @@ class LinkedList {
       return back;
     }
   }
+
+  int popFront() {
+    if (!head) {
+      throw std::runtime_error("Cannot pop from an empty list");
+    } else {
+      if (head->next == nullptr) {
+        auto front = head->data;
+        head = nullptr;
+        --size;
+        return front;
+      } else {
+        auto front = head->data;
+        head = std::move(head->next);
+        --size;
+        return front;
+      }
+    }
+  }
 };
 
 int main(void) {
   LinkedList list;
 
   list.pushFront(33);
+  list.pushFront(50);
+  list.pushFront(21);
+  list.pushBack(99);
 
-  std::cout << "REMOVED: " << list.popBack();
+  std::cout << "REMOVED: " << list.popFront();
 }
