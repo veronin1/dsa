@@ -134,12 +134,7 @@ class LinkedList {
     return current->data;
   }
 
-  int empty() const {
-    if (!head) {
-      return 1;
-    }
-    return 0;
-  }
+  bool empty() const { return !head; }
 };
 
 int main(void) {
