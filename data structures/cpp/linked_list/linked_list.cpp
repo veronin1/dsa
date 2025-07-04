@@ -138,12 +138,8 @@ class LinkedList {
   bool empty() const { return !head; }
 
   void clear() {
-    Node* current = head.get();
-    while (current) {
-      Node* temp = current;
-      current = current->next.get();
-      delete temp;
-    }
+    head.reset();
+    size = 0;
   }
 };
 
@@ -153,7 +149,8 @@ int main(void) {
   list.pushFront(33);
   list.pushFront(50);
   list.pushFront(21);
-  std::cout << "BACK: " << list.back() << std::endl;
-
+  list.printList();
+  list.clear();
+  std::cout << list.empty();
   return 0;
 }
