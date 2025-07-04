@@ -156,12 +156,15 @@ class LinkedList {
     }
 
     Node* current = head.get();
-    Node* prev = current;
-    while (current->next->data != value) {
-      prev = current;
+    while (current->next && current->next->data != value) {
       current = current->next.get();
     }
-    prev->next = std::move(current->next->next);
+
+    if (current->next && current->next->data == value) {
+      current->next = std::move(current->next->next);
+    } else {
+      throw std::runtime_error("Value not found");
+    }
   }
 };
 
