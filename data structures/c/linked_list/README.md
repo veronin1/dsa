@@ -18,6 +18,20 @@ The linked list is managed through the following functions:
 - `int size(LinkedList* list)`: Returns the current number of elements in the linked list.
 - `void remove_value(LinkedList* list, int value)`: Removes the first occurrence of `value` from the linked list.
 
+## Compilation
+
+Compile:
+
+```sh
+gcc main.c linkedlist.c -o linked_list -std=c11
+```
+
+Run:
+
+```sh
+./linked_list
+```
+
 ## Usage
 
 ```c
