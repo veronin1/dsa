@@ -7,34 +7,39 @@
 #include <stdexcept>
 #include <utility>
 
+template <typename T>
+class LinkedList;
+
+template <typename T>
 class Node {
  private:
-  int data;
-  std::unique_ptr<Node> next;
+  T data;
+  std::unique_ptr<Node<T>> next;
 
   // Give LinkedList access to private members
-  friend class LinkedList;
+  friend class LinkedList<T>;
 
  public:
-  Node(int value) : data(value), next(nullptr) {}
+  Node(T value) : data(value), next(nullptr) {}
 };
 
+template <typename T>
 class LinkedList {
  private:
-  std::unique_ptr<Node> head;
+  std::unique_ptr<Node<T>> head;
   int size;
 
  public:
   LinkedList() : head(nullptr), size(0) {}
 
-  void pushBack(int value) {
+  void pushBack(T value) {
     // unique ptr
-    auto newNode = std::make_unique<Node>(value);
+    std::unique_ptr<Node<T>> newNode = std::make_unique<Node<T>>(value);
 
     if (!head) {
       head = std::move(newNode);
     } else {
-      Node* current = head.get();
+      Node<T>* current = head.get();
 
       while (current->next != nullptr) {
         current = current->next.get();
@@ -45,8 +50,8 @@ class LinkedList {
     ++size;
   }
 
-  void pushFront(int value) {
-    auto newNode = std::make_unique<Node>(value);
+  void pushFront(T value) {
+    std::unique_ptr<Node<T>> newNode = std::make_unique<Node<T>>(value);
 
     if (!head) {
       head = std::move(newNode);
@@ -61,7 +66,7 @@ class LinkedList {
     if (!head) {
       return;
     } else {
-      Node* current = head.get();
+      Node<T>* current = head.get();
 
       while (current != nullptr) {
         std::cout << current->data;
@@ -74,11 +79,11 @@ class LinkedList {
     }
   }
 
-  int popBack() {
+  T popBack() {
     if (!head) {
       throw std::runtime_error("Cannot pop from an empty list");
     } else {
-      Node* current = head.get();
+      Node<T>* current = head.get();
 
       auto prev = current;
 
@@ -100,7 +105,7 @@ class LinkedList {
     }
   }
 
-  int popFront() {
+  T popFront() {
     if (!head) {
       throw std::runtime_error("Cannot pop from an empty list");
     } else {
@@ -118,18 +123,18 @@ class LinkedList {
     }
   }
 
-  int front() const {
+  T front() const {
     if (!head) {
       throw std::runtime_error("Empty list!");
     }
     return head->data;
   }
 
-  int back() const {
+  T back() const {
     if (!head) {
       throw std::runtime_error("Empty list!");
     }
-    const Node* current = head.get();
+    const Node<T>* current = head.get();
 
     while (current->next != nullptr) {
       current = current->next.get();
@@ -146,20 +151,18 @@ class LinkedList {
 
   int getSize() const { return size; }
 
-  void removeValue(int value) {
+  void removeValue(T value) {
     if (!head) {
       throw std::runtime_error("Empty list!");
     }
 
     if (head->data == value) {
-      if (!head->next) {
-        head = std::move(head->next);
-        --size;
-        return;
-      }
+      head = std::move(head->next);
+      --size;
+      return;
     }
 
-    Node* current = head.get();
+    Node<T>* current = head.get();
     while (current->next && current->next->data != value) {
       current = current->next.get();
     }
