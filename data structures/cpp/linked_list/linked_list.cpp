@@ -1,4 +1,3 @@
-#include <cstdio>
 #include <iostream>
 #include <memory>
 #include <ostream>
@@ -143,6 +142,27 @@ class LinkedList {
   }
 
   int getSize() { return size; }
+
+  void removeValue(int value) {
+    if (!head) {
+      throw std::runtime_error("Empty list!");
+    }
+
+    if (head->data == value) {
+      if (!head->next) {
+        head.reset();
+        return;
+      }
+    }
+
+    Node* current = head.get();
+    Node* prev = current;
+    while (current->next->data != value) {
+      prev = current;
+      current = current->next.get();
+    }
+    prev->next = std::move(current->next->next);
+  }
 };
 
 int main(void) {
@@ -152,7 +172,7 @@ int main(void) {
   list.pushFront(50);
   list.pushFront(21);
   list.printList();
-  list.clear();
-  std::cout << list.empty();
+  list.removeValue(50);
+  list.printList();
   return 0;
 }
