@@ -54,7 +54,7 @@ class LinkedList {
     ++size;
   }
 
-  void printList() {
+  void printList() const {
     if (!head) {
       return;
     } else {
@@ -115,11 +115,23 @@ class LinkedList {
     }
   }
 
-  int front() {
+  int front() const {
     if (!head) {
       throw std::runtime_error("Empty list!");
     }
     return head->data;
+  }
+
+  int back() const {
+    if (!head) {
+      throw std::runtime_error("Empty list!");
+    }
+    const Node* current = head.get();
+
+    while (current->next != nullptr) {
+      current = current->next.get();
+    }
+    return current->data;
   }
 };
 
@@ -129,7 +141,7 @@ int main(void) {
   list.pushFront(33);
   list.pushFront(50);
   list.pushFront(21);
-  list.pushBack(99);
+  std::cout << "BACK: " << list.back() << std::endl;
 
-  std::cout << "REMOVED: " << list.popFront();
+  return 0;
 }
