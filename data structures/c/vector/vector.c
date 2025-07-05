@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 typedef struct {
   int *data;
   int currentSize;
@@ -41,7 +43,28 @@ int back(Vector *v) {
   return v->data[v->currentSize - 1];
 }
 
+// Return a reference to the last element in vector
+int popBack(Vector *v) {
+  if (isEmpty(v)) {
+    return -1;
+  }
+
+  v->currentSize--;
+  return v->data[v->currentSize];
+}
+
+// Resize
 void resize(Vector *v, int newSize) {
-  return;
-  return;
+  int *new_arr = malloc(newSize * sizeof(int));
+  if (new_arr == NULL) {
+    return;
+  }
+
+  for (int i = 0; i < newSize; i++) {
+    new_arr[i] = v->data[i];
+  }
+
+  free(v->data);
+  v->data = new_arr;
+  v->currentSize = newSize;
 }
