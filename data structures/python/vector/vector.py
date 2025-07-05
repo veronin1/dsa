@@ -9,8 +9,12 @@ class Vector:
         self.capacity = len(self.data)
 
     def print_vector(self):
-        for x in self.data:
-            print(x)
+        for i, x in enumerate(self.data):
+            print(x, end='')
+            if i != self.currentSize - 1:
+                print(', ', end='')
+        print()
+
 
 def main():
     data = [3, 5, 9]
