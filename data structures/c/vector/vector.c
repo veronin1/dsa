@@ -34,6 +34,9 @@ int size(const Vector *v) {
 
 // Remove all elements from vector
 void clear(Vector *v) {
+  for (int i = 0; i < v->capacity; i++) {
+    v->data[i] = 0;
+  }
   v->currentSize = 0;
 }
 
