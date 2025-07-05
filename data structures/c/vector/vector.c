@@ -11,6 +11,7 @@ Vector createVector() {
   return v;
 }
 
+// Prints all elemenets in the vector
 void printVector(const Vector *v) {
   for (int i = 0; i < v->currentSize; i++) {
     printf("%i", v->data[i]);
