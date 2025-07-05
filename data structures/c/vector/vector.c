@@ -1,3 +1,4 @@
+#include <stdlib.h>
 typedef struct {
   int *data;
   int currentSize;
@@ -10,4 +11,8 @@ int isEmpty(const Vector *v) {
 
 int size(const Vector *v) {
   return v->currentSize;
+}
+
+void clear(Vector *v) {
+  v->currentSize = 0;
 }
