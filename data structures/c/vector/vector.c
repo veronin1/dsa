@@ -4,6 +4,8 @@ typedef struct {
   int capacity;
 } Vector;
 
+void resize(Vector *v, int newSize);
+
 // Returns 1 if hte list is empty, otherwise 0
 int isEmpty(const Vector *v) {
   return v->currentSize == 0;
@@ -21,6 +23,15 @@ void clear(Vector *v) {
 
 // Append a new element to the end of the vector
 void push_back(Vector *v, int value) {
+  if (v->currentSize == v->capacity) {
+    resize(v, v->capacity * 2);
+  }
+
   v->data[v->currentSize] = value;
   v->currentSize++;
+}
+
+void resize(Vector *v, int newSize) {
+  return;
+  return;
 }
