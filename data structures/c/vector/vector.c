@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct {
@@ -7,6 +8,16 @@ typedef struct {
 } Vector;
 
 void resize(Vector *v, int newSize);
+
+void printVector(const Vector *v) {
+  for (int i = 0; i < v->currentSize; i++) {
+    printf("%i", v->data[i]);
+    if (i != v->currentSize - 1) {
+      printf(", ");
+    }
+  }
+  printf("\n");
+}
 
 // Returns 1 if hte list is empty, otherwise 0
 int isEmpty(const Vector *v) {
@@ -34,16 +45,16 @@ void pushBack(Vector *v, int value) {
 }
 
 // Return a reference to the first element in vector
-int front(Vector *v) {
+int front(const Vector *v) {
   return v->data[0];
 }
 
 // Return a reference to the last element in vector
-int back(Vector *v) {
+int back(const Vector *v) {
   return v->data[v->currentSize - 1];
 }
 
-// Return a reference to the last element in vector
+// Return and remove reference to the last element in vector
 int popBack(Vector *v) {
   if (isEmpty(v)) {
     return -1;
@@ -53,7 +64,7 @@ int popBack(Vector *v) {
   return v->data[v->currentSize];
 }
 
-// Resize
+// Change number of elements in vector ot newSize
 void resize(Vector *v, int newSize) {
   int *new_arr = malloc(newSize * sizeof(int));
   if (new_arr == NULL) {
@@ -74,4 +85,17 @@ void resize(Vector *v, int newSize) {
   free(v->data);
   v->data = new_arr;
   v->currentSize = newSize;
+}
+
+int main(void) {
+  Vector v;
+
+  v.currentSize = 5;
+  v.data = malloc(v.currentSize * sizeof(int));
+  for (int i = 0; i < v.currentSize; i++) {
+    v.data[i] = i + 1;
+  }
+
+  printf("Initial vector:\n");
+  printVector(&v);
 }
