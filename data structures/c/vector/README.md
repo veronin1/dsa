@@ -17,6 +17,20 @@ The vector is managed through the following methods in this order:
 - `int back(const Vector *v)`: Returns a reference to the last element in the vector.
 - `int popBack(Vector *v)`: Removes and returns the last element of the vector.
 
+## Compilation
+
+Compile:
+
+```sh
+gcc main.c vector.c -o vector -std=c11
+```
+
+Run:
+
+```sh
+./vector
+```
+
 ## Usage
 
 ```sh
