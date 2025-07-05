@@ -46,13 +46,10 @@ class Vector:
     def back(self):
         return self.data[currentSize - 1]
 
-    
-
-
-
-
-
-
+    def pop_back(self):
+        return self.data[currentSize - 1]
+        self.data.pop()
+        self.currentSize -= 1
 
 def main():
     data = [3, 5, 9]
