@@ -40,6 +40,12 @@ class Vector:
         self.data[self.currentSize] = value
         self.currentSize += 1
 
+    def front(self):
+        return self.data[0]
+
+    def back(self):
+        return self.data[currentSize - 1]
+
     
 
 
