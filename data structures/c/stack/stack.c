@@ -4,9 +4,17 @@
 
 Stack createStack(size_t maxSize) {
   Stack s;
+  if (maxSize == 0) {
+    maxSize = 1000; // Default size
+  }
+  s.top = 0;
+
   s.maxSize = maxSize;
   s.data = malloc(sizeof(size_t) * s.maxSize);
-  s.top = 0;
+  if (s.data == NULL) {
+    s.maxSize = 0;
+    return s;
+  }
   return s;
 }
 
