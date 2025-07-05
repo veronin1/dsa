@@ -15,8 +15,6 @@ Vector createVector() {
   return v;
 }
 
-void resize(Vector *v, int newSize);
-
 void printVector(const Vector *v) {
   for (int i = 0; i < v->currentSize; i++) {
     printf("%i", v->data[i]);
@@ -40,6 +38,35 @@ int size(const Vector *v) {
 // Remove all elements from vector
 void clear(Vector *v) {
   v->currentSize = 0;
+}
+
+// Change number of elements in vector ot newSize
+void resize(Vector *v, int newSize) {
+  int *new_arr = malloc(newSize * sizeof(int));
+  if (new_arr == NULL) {
+    return;
+  }
+
+  int limit = 0;
+  if (newSize > v->currentSize) {
+    limit = v->currentSize;
+
+    for (int i = v->currentSize; i < newSize; i++) {
+      new_arr[i] = 0;
+    }
+  } else {
+    limit = newSize;
+  }
+
+  v->currentSize = 0;
+  for (int i = 0; i < limit; i++) {
+    new_arr[i] = v->data[i];
+    v->currentSize++;
+  }
+
+  free(v->data);
+  v->data = new_arr;
+  v->capacity = newSize;
 }
 
 // Append a new element to the end of the vector
@@ -74,35 +101,6 @@ int popBack(Vector *v) {
 
   v->currentSize--;
   return v->data[v->currentSize];
-}
-
-// Change number of elements in vector ot newSize
-void resize(Vector *v, int newSize) {
-  int *new_arr = malloc(newSize * sizeof(int));
-  if (new_arr == NULL) {
-    return;
-  }
-
-  int limit = 0;
-  if (newSize > v->currentSize) {
-    limit = v->currentSize;
-
-    for (int i = v->currentSize; i < newSize; i++) {
-      new_arr[i] = 0;
-    }
-  } else {
-    limit = newSize;
-  }
-
-  v->currentSize = 0;
-  for (int i = 0; i < limit; i++) {
-    new_arr[i] = v->data[i];
-    v->currentSize++;
-  }
-
-  free(v->data);
-  v->data = new_arr;
-  v->capacity = newSize;
 }
 
 int main() {
