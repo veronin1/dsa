@@ -39,3 +39,14 @@ int top(Stack *s) {
 
   return s->data[s->top];
 }
+
+int size(Stack *s) {
+  return s->top;
+}
+
+int isEmpty(Stack *s) {
+  if (!s) {
+    return 0;
+  }
+  return 1;
+}
