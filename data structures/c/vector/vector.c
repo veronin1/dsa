@@ -74,6 +74,10 @@ void resize(Vector *v, int newSize) {
   int limit = 0;
   if (newSize > v->currentSize) {
     limit = v->currentSize;
+
+    for (int i = v->currentSize; i < newSize; i++) {
+      new_arr[i] = 0;
+    }
   } else {
     limit = newSize;
   }
@@ -87,15 +91,42 @@ void resize(Vector *v, int newSize) {
   v->currentSize = newSize;
 }
 
-int main(void) {
+int main() {
   Vector v;
 
+  // Initialize vector with size 5
   v.currentSize = 5;
   v.data = malloc(v.currentSize * sizeof(int));
+  if (!v.data) {
+    printf("Initial allocation failed!\n");
+    return 1;
+  }
+
   for (int i = 0; i < v.currentSize; i++) {
     v.data[i] = i + 1;
   }
 
   printf("Initial vector:\n");
   printVector(&v);
+
+  // Resize larger
+  resize(&v, 8);
+  printf("After resizing to 8:\n");
+  printVector(&v);
+
+  // Fill new elements
+  for (int i = 5; i < v.currentSize; i++) {
+    v.data[i] = (i + 1) * 10;
+  }
+
+  printf("After filling new elements:\n");
+  printVector(&v);
+
+  // Resize smaller
+  resize(&v, 3);
+  printf("After resizing to 3:\n");
+  printVector(&v);
+
+  free(v.data);
+  return 0;
 }
