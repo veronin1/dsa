@@ -1,11 +1,11 @@
 typedef struct {
-  int *arr;
+  int *data;
   int currentSize;
   int capacity;
-} vector;
+} Vector;
 
-int empty(vector arr) {
-  if (arr.currentSize != 0) {
+int empty(Vector v) {
+  if (v.currentSize != 0) {
     return 1;
   }
   return 0;
