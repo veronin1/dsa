@@ -90,7 +90,10 @@ void pushBack(Vector *v, int value) {
 
 // Return a reference to the first element in vector
 int front(const Vector *v) {
-  return v->data[0];
+  if (!isEmpty(v)) {
+    return v->data[0];
+  }
+  return -1;
 }
 
 // Return a reference to the last element in vector
