@@ -26,6 +26,17 @@ class Vector:
         self.currentSize = 0
         self.capacity = 0
 
+    def resize(self, newSize):
+        self.data = self.data[:newSize]
+
+        if newSize > self.currentSize:
+            while (len(self.data) < newSize):
+                self.data.append(None)
+
+
+
+
+
 
 
 def main():
