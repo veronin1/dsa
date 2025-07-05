@@ -6,8 +6,9 @@ typedef struct {
   size_t maxSize;
 } Stack;
 
-Stack createStack(void) {
+Stack createStack(size_t maxSize) {
   Stack s;
+  s.maxSize = maxSize;
   s.data = malloc(sizeof(size_t) * s.maxSize);
   s.top = 0;
   return s;
@@ -26,6 +27,10 @@ int pop(Stack *s) {
 
 void push(Stack *s, int element) {
   if (!s) {
+    return;
+  }
+
+  if (s->top == s->maxSize) {
     return;
   }
 
