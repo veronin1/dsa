@@ -25,6 +25,6 @@ int main() {
   printVector(&v); // Should print 1, 2, 0, 0, 0
   printf("Size: %d, Capacity: %d\n", v.currentSize, v.capacity);
 
-  free(v.data);
+  destroyVector(&v);
   return 0;
 }

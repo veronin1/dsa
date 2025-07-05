@@ -6,6 +6,7 @@ A vector is a dynamic array data structure that allows for more efficient maneuv
 
 The vector is managed through the following methods in this order:
 
+- `Vector createVector()`: Creates and returns a new, empty vector.
 - `void printVector(const Vector *v)`: Print the entire vector.
 - `int isEmpty(const Vector *v)`: Returns `1` if the list is empty, otherwise `0`.
 - `int size(const Vector *v)`: Return number of elements in the vector.
