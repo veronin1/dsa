@@ -33,6 +33,9 @@ class Vector:
             while (len(self.data) < newSize):
                 self.data.append(None)
 
+    def destroy_vector(self):
+        self.data.clear()
+
 
 
 
