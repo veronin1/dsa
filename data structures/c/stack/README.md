@@ -1,6 +1,6 @@
 # Stack (C)
 
-A stack is a linear data structure that stores items in a last-in, first-out (LIFO) order.
+A stack is a linear data structure that stores items in a last-in, first-out (LIFO) order. In this example I used a fixed size array of which defaults to 1000 if invalid input.
 
 ## Interface
 
