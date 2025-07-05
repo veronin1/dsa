@@ -60,7 +60,14 @@ void resize(Vector *v, int newSize) {
     return;
   }
 
-  for (int i = 0; i < newSize; i++) {
+  int limit = 0;
+  if (newSize > v->currentSize) {
+    limit = v->currentSize;
+  } else {
+    limit = newSize;
+  }
+
+  for (int i = 0; i < limit; i++) {
     new_arr[i] = v->data[i];
   }
 
