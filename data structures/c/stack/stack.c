@@ -17,6 +17,17 @@ int pop(Stack *s) {
   if (!s || s->top == 0) {
     return -1;
   }
+  int top = s->data[s->top];
+  s->data[s->top] = 0;
   s->top--;
-  return s->data[s->top];
+  return top;
+}
+
+void push(Stack *s, int element) {
+  if (!s) {
+    return;
+  }
+
+  s->data[s->top] = element;
+  s->top++;
 }
