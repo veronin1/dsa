@@ -32,30 +32,32 @@ class Vector:
         if newSize > self.currentSize:
             while (len(self.data) < newSize):
                 self.data.append(None)
+        self.capacity = newSize
+        self.capacity = max(self.capacity, newSize)
 
     def destroy_vector(self):
         self.data.clear()
+        self.currentSize = 0
+        self.capacity = 0
 
     def push_back(self, value):
-        self.data[self.currentSize] = value
+        self.data.append(value)
         self.currentSize += 1
+        self.capacity = max(self.capacity, self.currentSize)
 
     def front(self):
+        if self.is_empty():
+            return None
         return self.data[0]
 
     def back(self):
-        return self.data[currentSize - 1]
+        if self.is_empty():
+            return None
+        return self.data[self.currentSize - 1]
 
     def pop_back(self):
-        return self.data[currentSize - 1]
-        self.data.pop()
+        if self.is_empty():
+            return None
         self.currentSize -= 1
-
-def main():
-    data = [3, 5, 9]
-    v = Vector(data)
-
-    v.print_vector()
-
-if __name__ == "__main__":
-    main()
+        self.data.pop()
+        
