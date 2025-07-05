@@ -36,6 +36,11 @@ int front(Vector *v) {
   return v->data[0];
 }
 
+// Return a reference to the last element in vector
+int back(Vector *v) {
+  return v->data[v->currentSize - 1];
+}
+
 void resize(Vector *v, int newSize) {
   return;
   return;
