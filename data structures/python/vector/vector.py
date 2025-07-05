@@ -18,6 +18,14 @@ class Vector:
     def is_empty(self):
         return self.currentSize == 0
 
+    def __len__(self):
+        return self.currentSize
+
+    def clear(self):
+        self.data = []
+        self.currentSize = 0
+        self.capacity = 0
+
 
 
 def main():
