@@ -15,6 +15,10 @@ class Vector:
                 print(', ', end='')
         print()
 
+    def is_empty(self):
+        return self.currentSize == 0
+
+
 
 def main():
     data = [3, 5, 9]
