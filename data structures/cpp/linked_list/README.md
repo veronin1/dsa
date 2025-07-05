@@ -18,7 +18,7 @@ The linked list is managed through the following methods:
 - `int getSize() const`: Returns the current number of elements in the list.
 - `void removeValue(int value)`: Removes the first occurrence of `value` from the list. Throws if the value is not found.
 
-## Compilation
+## Compiling
 
 Compile:
 

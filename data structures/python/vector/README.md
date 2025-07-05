@@ -18,7 +18,7 @@ The `Vector` class is managed through the following methods:
 - `back()`: Returns the last element in the vector. Returns `None` if the vector is empty.
 - `pop_back()`: Removes and returns the last element of the vector. Returns `None` if the vector is empty.
 
-## Compilation
+## Compiling
 
 ```sh
 python main.py
