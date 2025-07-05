@@ -4,9 +4,10 @@ typedef struct {
   int capacity;
 } Vector;
 
-int empty(Vector v) {
-  if (v.currentSize != 0) {
-    return 1;
-  }
-  return 0;
+int isEmpty(const Vector *v) {
+  return v->currentSize == 0;
+}
+
+int size(const Vector *v) {
+  return v->currentSize;
 }
