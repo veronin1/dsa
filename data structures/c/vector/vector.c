@@ -22,13 +22,18 @@ void clear(Vector *v) {
 }
 
 // Append a new element to the end of the vector
-void push_back(Vector *v, int value) {
+void pushBack(Vector *v, int value) {
   if (v->currentSize == v->capacity) {
     resize(v, v->capacity * 2);
   }
 
   v->data[v->currentSize] = value;
   v->currentSize++;
+}
+
+// Return a reference to the first element in vector
+int front(Vector *v) {
+  return v->data[0];
 }
 
 void resize(Vector *v, int newSize) {
