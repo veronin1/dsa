@@ -1,8 +1,7 @@
 #include <iostream>
 #include <ostream>
-#include <string> // Required for std::string
 
-#include "linkedlist.hpp" // Assuming this file contains the LinkedList template class definition
+#include "linkedlist.hpp"
 
 void testIntList() {
   std::cout << "--- Testing with int ---" << std::endl;
