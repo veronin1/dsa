@@ -1,10 +1,6 @@
-#include <stdlib.h>
+#include "stack.h"
 
-typedef struct {
-  size_t *data;
-  size_t top;
-  size_t maxSize;
-} Stack;
+#include <stdlib.h>
 
 Stack createStack(size_t maxSize) {
   Stack s;
@@ -20,12 +16,12 @@ int pop(Stack *s) {
     return -1;
   }
   int top = s->data[s->top - 1];
-  s->data[s->top] = 0;
+  s->data[s->top - 1] = 0;
   s->top--;
   return top;
 }
 
-void push(Stack *s, int element) {
+void push(Stack *s, int value) {
   if (!s) {
     return;
   }
@@ -34,7 +30,7 @@ void push(Stack *s, int element) {
     return;
   }
 
-  s->data[s->top] = element;
+  s->data[s->top] = value;
   s->top++;
 }
 
@@ -43,7 +39,7 @@ int top(Stack *s) {
     return -1;
   }
 
-  return s->data[s->top];
+  return s->data[s->top - 1];
 }
 
 int size(Stack *s) {
@@ -52,7 +48,7 @@ int size(Stack *s) {
 
 int isEmpty(Stack *s) {
   if (!s || !s->top) {
-    return 0;
+    return 1;
   }
-  return 1;
+  return 0;
 }
