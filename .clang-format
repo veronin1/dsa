@@ -2,13 +2,12 @@
 BasedOnStyle: Google
 Language: Cpp
 
-# Explicit overrides (optional — these match Google defaults)
-IndentWidth: 2
+# Explicit overrides
 TabWidth: 2
 UseTab: Never
 ColumnLimit: 80
 DerivePointerAlignment: false
-PointerAlignment: Left
+PointerAlignment: Right
 AllowShortFunctionsOnASingleLine: InlineOnly
 BreakBeforeBraces: Attach
 SpacesBeforeTrailingComments: 1
