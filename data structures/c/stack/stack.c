@@ -31,3 +31,11 @@ void push(Stack *s, int element) {
   s->data[s->top] = element;
   s->top++;
 }
+
+int top(Stack *s) {
+  if (!s) {
+    return -1;
+  }
+
+  return s->data[s->top];
+}
