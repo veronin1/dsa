@@ -36,6 +36,12 @@ class Vector:
     def destroy_vector(self):
         self.data.clear()
 
+    def push_back(self, value):
+        self.data[self.currentSize] = value
+        self.currentSize += 1
+
+    
+
 
 
 
