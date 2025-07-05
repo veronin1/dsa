@@ -1,13 +1,14 @@
 #include <stdlib.h>
 
 typedef struct {
-  int *data;
-  int top;
+  size_t *data;
+  size_t top;
+  size_t maxSize;
 } Stack;
 
 Stack createStack(void) {
   Stack s;
-  s.data = NULL;
+  s.data = malloc(sizeof(size_t) * s.maxSize);
   s.top = 0;
   return s;
 }
@@ -17,7 +18,7 @@ int pop(Stack *s) {
   if (!s || s->top == 0) {
     return -1;
   }
-  int top = s->data[s->top];
+  int top = s->data[s->top - 1];
   s->data[s->top] = 0;
   s->top--;
   return top;
@@ -45,7 +46,7 @@ int size(Stack *s) {
 }
 
 int isEmpty(Stack *s) {
-  if (!s) {
+  if (!s || !s->top) {
     return 0;
   }
   return 1;
