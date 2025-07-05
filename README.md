@@ -23,7 +23,7 @@ I started this repo to:
 | --- | ----------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | 1   | Linked List | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/linked_list) | [C++](https://github.com/veronin1/dsa/tree/main/data%20structures/cpp/linked_list) | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/linked_list) |
 | 2   | Vector      | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/vector)      | ❌ Not yet implemented                                                             | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/vector)      |
-| 3   | Stack       | ❌ Not yet implemented                                                         | ❌ Not yet implemented                                                             | ❌ Not yet implemented                                                                   |
+| 3   | Stack       | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/stack)       | ❌ Not yet implemented                                                             | ❌ Not yet implemented                                                                   |
 | 4   | Queue       | ❌ Not yet implemented                                                         | ❌ Not yet implemented                                                             | ❌ Not yet implemented                                                                   |
 
 <!--
