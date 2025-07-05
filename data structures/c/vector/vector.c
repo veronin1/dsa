@@ -47,16 +47,7 @@ void resize(Vector *v, int newSize) {
     return;
   }
 
-  int limit = 0;
-  if (newSize > v->currentSize) {
-    limit = v->currentSize;
-
-    for (int i = v->currentSize; i < newSize; i++) {
-      new_arr[i] = 0;
-    }
-  } else {
-    limit = newSize;
-  }
+  int limit = (newSize > v->currentSize) ? v->currentSize : newSize;
 
   v->currentSize = 0;
   for (int i = 0; i < limit; i++) {
@@ -64,9 +55,23 @@ void resize(Vector *v, int newSize) {
     v->currentSize++;
   }
 
+  if (newSize > v->currentSize) {
+    for (int i = v->currentSize; i < newSize; i++) {
+      new_arr[i] = 0;
+    }
+  }
+
   free(v->data);
   v->data = new_arr;
   v->capacity = newSize;
+}
+
+// Destroy the vector
+void destroyVector(Vector *v) {
+  free(v->data);
+  v->data = NULL;
+  v->currentSize = 0;
+  v->capacity = 0;
 }
 
 // Append a new element to the end of the vector
