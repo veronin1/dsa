@@ -34,7 +34,8 @@ class Vector {
     return data[currentSize - 1];
   }
 
-  void pushBack(int &value) {
+  // append value to end of vect
+  void pushBack(const int &value) {
     if (capacity == 0) {
       resize(1); // alloc space if none
     } else if (currentSize == capacity) {
