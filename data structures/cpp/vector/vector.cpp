@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <cstddef>
 #include <memory>
 #include <stdexcept>
@@ -11,6 +10,16 @@ class Vector {
 
  public:
   Vector() : currentSize(0), capacity(0) {}
+
+  class Iterator {
+   private:
+    int *data;
+
+   public:
+    Iterator() : data(nullptr) {}
+
+    Iterator(int *ptr) : data(ptr) {}
+  };
 
   // returns currentSize
   int size() const { return currentSize; }
