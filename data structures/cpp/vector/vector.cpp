@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cstddef>
 #include <memory>
 #include <stdexcept>
@@ -56,5 +57,32 @@ class Vector {
     return data[currentSize - 1];
   }
 
-  void resize(size_t newSize) { return; }
+  void resize(size_t newCapacity) {
+    // new temp arr for copying
+    std::unique_ptr<int[]> temp_arr(new int[newCapacity]);
+
+    // set limit in for loop
+    size_t limit = (newCapacity > currentSize) ? currentSize : newCapacity;
+
+    // copy all data from data[] to temp_arr[] for elems that fit
+    for (int i = 0; i < limit; i++) {
+      temp_arr[i] = data[i];
+    }
+
+    // move ownership of pointer to the new arr
+    data = std::move(temp_arr);
+
+    capacity = newCapacity;
+
+    // shrink size accordingly
+    if (currentSize > capacity) {
+      currentSize = capacity;
+    }
+  }
+
+  void clear() {
+    currentSize = 0;
+    capacity = 0;
+    data = nullptr;
+  }
 };
