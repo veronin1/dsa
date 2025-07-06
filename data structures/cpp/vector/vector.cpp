@@ -1,11 +1,13 @@
+#include <memory>
+
 class Vector {
  private:
-  int *data;
+  std::unique_ptr<int[]> data;
   int currentSize;
   int capacity;
 
  public:
-  Vector() : data(nullptr), currentSize(0), capacity(0) {}
+  Vector() : currentSize(0), capacity(0) {}
 
-  int size(void) { return currentSize; }
+  int size() const { return currentSize; }
 };
