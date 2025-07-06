@@ -51,6 +51,9 @@ class Vector {
     if (empty()) {
       throw std::out_of_range("Vector is empty");
     }
+
+    --currentSize;
+    return data[currentSize - 1];
   }
 
   void resize(size_t newSize) { return; }
