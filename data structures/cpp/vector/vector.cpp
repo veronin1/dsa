@@ -65,7 +65,7 @@ class Vector {
     size_t limit = (newCapacity > currentSize) ? currentSize : newCapacity;
 
     // copy all data from data[] to temp_arr[] for elems that fit
-    for (int i = 0; i < limit; i++) {
+    for (size_t i = 0; i < limit; i++) {
       temp_arr[i] = data[i];
     }
 
@@ -80,6 +80,7 @@ class Vector {
     }
   }
 
+  // removes all elements from the vector
   void clear() {
     currentSize = 0;
     capacity = 0;
