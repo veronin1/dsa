@@ -9,7 +9,14 @@ class Vector {
   int capacity;
 
  public:
-  Vector() : currentSize(0), capacity(0) {}
+  Vector() : data(new int[10000]), currentSize(0), capacity(10000) {}
+
+  Vector(const int *arr, int size)
+      : data(new int[size]), currentSize(size), capacity(size) {
+    for (int i = 0; i < size; ++i) {
+      data[i] = arr[i];
+    }
+  }
 
   class Iterator {
    private:
