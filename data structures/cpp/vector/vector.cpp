@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <memory>
 #include <stdexcept>
 
@@ -33,5 +34,16 @@ class Vector {
     return data[currentSize - 1];
   }
 
- private:
+  void pushBack(int &value) {
+    if (capacity == 0) {
+      resize(1); // alloc space if none
+    } else if (currentSize == capacity) {
+      resize(capacity * 2); // double capac when full
+    }
+
+    data[currentSize] = value; // insert current pos
+    ++currentSize;             // increment size
+  }
+
+  void resize(size_t newSize) { return; }
 };
