@@ -24,5 +24,14 @@ class Vector {
     return data[0];
   }
 
+  // return reference to last element in vect
+  int &back() {
+    if (currentSize == 0) {
+      throw std::out_of_range("Vector is empty");
+    }
+
+    return data[currentSize - 1];
+  }
+
  private:
 };
