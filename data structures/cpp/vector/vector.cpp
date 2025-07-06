@@ -54,7 +54,7 @@ class Vector {
     }
 
     --currentSize;
-    return data[currentSize - 1];
+    return data[currentSize];
   }
 
   void resize(size_t newCapacity) {
