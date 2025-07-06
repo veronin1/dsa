@@ -39,7 +39,7 @@ class LinkedList {
     if (!head) {
       head = std::move(newNode);
     } else {
-      Node<T>* current = head.get();
+      Node<T> *current = head.get();
 
       while (current->next != nullptr) {
         current = current->next.get();
@@ -66,7 +66,7 @@ class LinkedList {
     if (!head) {
       return;
     } else {
-      Node<T>* current = head.get();
+      Node<T> *current = head.get();
 
       while (current != nullptr) {
         std::cout << current->data;
@@ -83,7 +83,7 @@ class LinkedList {
     if (!head) {
       throw std::runtime_error("Cannot pop from an empty list");
     } else {
-      Node<T>* current = head.get();
+      Node<T> *current = head.get();
 
       auto prev = current;
 
@@ -134,7 +134,7 @@ class LinkedList {
     if (!head) {
       throw std::runtime_error("Empty list!");
     }
-    const Node<T>* current = head.get();
+    const Node<T> *current = head.get();
 
     while (current->next != nullptr) {
       current = current->next.get();
@@ -162,7 +162,7 @@ class LinkedList {
       return;
     }
 
-    Node<T>* current = head.get();
+    Node<T> *current = head.get();
     while (current->next && current->next->data != value) {
       current = current->next.get();
     }
