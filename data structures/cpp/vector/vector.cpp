@@ -19,7 +19,7 @@ class Vector {
 
   // returns reference to first element in vect
   int &front() {
-    if (currentSize == 0) {
+    if (empty()) {
       throw std::out_of_range("Vector is empty");
     }
     return data[0];
@@ -27,7 +27,7 @@ class Vector {
 
   // return reference to last element in vect
   int &back() {
-    if (currentSize == 0) {
+    if (empty()) {
       throw std::out_of_range("Vector is empty");
     }
 
@@ -44,6 +44,13 @@ class Vector {
 
     data[currentSize] = value; // insert current pos
     ++currentSize;             // increment size
+  }
+
+  // removes the last element of the vect and returns it
+  int popBack() {
+    if (empty()) {
+      throw std::out_of_range("Vector is empty");
+    }
   }
 
   void resize(size_t newSize) { return; }
