@@ -16,8 +16,8 @@ class Vector {
   // return true if no elems
   bool empty() const { return currentSize == 0; }
 
-  // return first element in vect
-  int front() {
+  // returns reference to first element in vect
+  int &front() {
     if (currentSize == 0) {
       throw std::out_of_range("Vector is empty");
     }
