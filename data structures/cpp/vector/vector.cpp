@@ -26,6 +26,13 @@ class Vector {
     Iterator() : data(nullptr) {}
 
     Iterator(int *ptr) : data(ptr) {}
+
+    int &operator*() { return *data; }
+
+    Vector::Iterator &operator++() {
+      data++;
+      return *this;
+    }
   };
 
   // returns currentSize
