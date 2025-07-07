@@ -2,6 +2,7 @@
 
 This repository contains my implementations of various Data Structures and Algorithms (DSA) in **C++**, **C**, and **Python**.  
 It serves as a learning project to practice and understand fundamental concepts in DSA through programming.
+
 ---
 
 ## About
