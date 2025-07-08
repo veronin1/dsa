@@ -10,4 +10,11 @@ class Vector {
  public:
   Vector() : data(nullptr), size(0), capacity(0) {};
   ~Vector() { delete[] data; }
+
+  void clear() {
+    capacity = 0;
+    size = 0;
+    delete[] data;
+    data = nullptr;
+  }
 };
