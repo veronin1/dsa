@@ -1,6 +1,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
+#include <stdbool.h>
 #include <stdlib.h>
 
 typedef struct {
@@ -11,11 +12,13 @@ typedef struct {
   size_t capacity;
 } Queue;
 
-bool isEmpty(void);
-int size(void);
-void enqueue(int element);
-int front(void);
-int back(void);
-int dequeue(void);
+Queue createQueue(size_t capacity);
+bool isEmpty(Queue *q);
+int size(Queue *q);
+void enqueue(Queue *q, int element);
+int front(Queue *q);
+int back(Queue *q);
+int dequeue(Queue *q);
+void freeQueue(Queue *q);
 
 #endif

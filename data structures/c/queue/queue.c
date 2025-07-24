@@ -16,3 +16,7 @@ Queue createQueue(size_t capacity) {
   }
   return q;
 }
+
+bool isEmpty(Queue *q) {
+  return q->size == 0;
+}
