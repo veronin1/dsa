@@ -20,3 +20,7 @@ Queue createQueue(size_t capacity) {
 bool isEmpty(Queue *q) {
   return q->size == 0;
 }
+
+size_t size(Queue *q) {
+  return q->size;
+}
