@@ -62,7 +62,7 @@ int front(Queue *q) {
   if (q->size == 0) {
     return -1;
   }
-  return q->front;
+  return q->data[q->front];
 }
 
 int back(Queue *q) {
