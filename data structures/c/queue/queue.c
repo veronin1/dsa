@@ -69,3 +69,20 @@ int back(Queue *q) {
   int index = (q->rear - 1 + q->capacity) % q->capacity;
   return q->data[index];
 }
+
+// remove and return the value at front of q
+int dequeue(Queue *q) {
+  if (isEmpty(q)) {
+    return -1;
+  }
+  int front = q->data[q->front];
+
+  if (q->size == 1) {
+    q->rear = q->front = -1;
+  } else {
+    q->front = (q->front + 1) % q->capacity;
+  }
+
+  q->size--;
+  return front;
+}
