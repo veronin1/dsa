@@ -28,8 +28,7 @@ size_t size(Queue *q) {
 
 void enqueue(Queue *q, int element) {
   if (q->size == q->capacity) {
-    // queue full
-    return;
+    resize(q, q->capacity * 2);
   }
 
   q->data[q->rear] = element;

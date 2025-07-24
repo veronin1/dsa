@@ -16,6 +16,7 @@ Queue createQueue(size_t capacity);
 bool isEmpty(Queue *q);
 size_t size(Queue *q);
 void enqueue(Queue *q, int element);
+void resize(Queue *q, size_t newCapacity);
 int front(Queue *q);
 int back(Queue *q);
 int dequeue(Queue *q);
