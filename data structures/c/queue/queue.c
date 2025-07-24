@@ -31,12 +31,13 @@ void enqueue(Queue *q, int element) {
     resize(q, q->capacity * 2);
   }
 
-  if (q->front == -1 && q->rear == -1) {
+  if (q->size == 0) {
     q->front = q->rear = 0;
+  } else {
+    q->rear = (q->rear + 1) % q->capacity;
   }
 
   q->data[q->rear] = element;
-  q->rear = (q->rear + 1) % q->capacity;
   q->size++;
 }
 
