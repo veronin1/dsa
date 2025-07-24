@@ -57,3 +57,10 @@ void resize(Queue *q, size_t newCapacity) {
 
   free(oldData);
 }
+
+int front(Queue *q) {
+  if (q->size == 0) {
+    return -1;
+  }
+  return q->front;
+}
