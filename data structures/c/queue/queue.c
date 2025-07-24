@@ -6,8 +6,8 @@ Queue createQueue(size_t capacity) {
   if (capacity == 0) {
     capacity = 1000;
   }
-  q.front = 0;
-  q.rear = 0;
+  q.front = -1;
+  q.rear = -1;
   q.size = 0;
   q.capacity = capacity;
   q.data = malloc(sizeof(int) * q.capacity);
