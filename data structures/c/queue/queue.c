@@ -64,3 +64,8 @@ int front(Queue *q) {
   }
   return q->front;
 }
+
+int back(Queue *q) {
+  int index = (q->rear - 1 + q->capacity) % q->capacity;
+  return q->data[index];
+}
