@@ -14,7 +14,7 @@ typedef struct {
 
 Queue createQueue(size_t capacity);
 bool isEmpty(Queue *q);
-int size(Queue *q);
+size_t size(Queue *q);
 void enqueue(Queue *q, int element);
 int front(Queue *q);
 int back(Queue *q);
