@@ -11,4 +11,11 @@ typedef struct {
   size_t capacity;
 } Queue;
 
+bool isEmpty(void);
+int size(void);
+void enqueue(int element);
+int front(void);
+int back(void);
+int dequeue(void);
+
 #endif
