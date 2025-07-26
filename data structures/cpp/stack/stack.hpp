@@ -1,6 +1,8 @@
 #include <cstddef>
 #include <stdexcept>
 
+#define DEFAULT_INIT_SIZE 1000
+
 template <typename T>
 class Stack {
  private:
@@ -8,13 +10,18 @@ class Stack {
   size_t currentSize, capacity;
 
  public:
+  Stack(size_t capacity = DEFAULT_INIT_SIZE);
   void push(T element); // insert
   T pop();              // delete
   size_t size();
   bool isEmpty();
   bool isFull();
+  ~Stack();
 };
 
+template <typename T>
+Stack<T>::Stack(size_t cap) : data(new T[cap]), currentSize(0), capacity(cap) {
+}
 template <typename T>
 void Stack<T>::push(T element) {
   if (currentSize == capacity) {
@@ -49,4 +56,9 @@ bool Stack<T>::isEmpty() {
 template <typename T>
 bool Stack<T>::isFull() {
   return currentSize == capacity;
+}
+
+template <typename T>
+Stack<T>::~Stack() {
+  delete[] data; // free memory
 }
