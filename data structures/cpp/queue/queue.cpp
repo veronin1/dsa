@@ -1,5 +1,7 @@
 #include "queue.hpp"
 
+#include <stdexcept>
+
 #define DEFAULT_INIT_SIZE 1000
 
 Queue::Queue(size_t cap) {
@@ -20,6 +22,23 @@ void Queue::enqueue(int element) {
   }
   data[(++tail) % capacity] = element;
   ++size;
+}
+
+int Queue::dequeue() {
+  if (size == 0) {
+    throw std::out_of_range("Queue is empty");
+  }
+  auto front = data[head];
+
+  if (head == tail) {
+    head = -1;
+    tail = -1;
+  } else {
+    head = (++head) & capacity;
+  }
+
+  --size;
+  return front;
 }
 
 void Queue::expand() {
