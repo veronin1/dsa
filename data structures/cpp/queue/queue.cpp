@@ -8,7 +8,7 @@ Queue::Queue(size_t cap) {
   capacity = cap;
   data = new int[capacity];
   head = 0;
-  tail = capacity - 1;
+  tail = capacity - 1; // point to last inserted elem
   currentSize = 0;
 }
 
@@ -20,6 +20,7 @@ void Queue::enqueue(int element) {
   if (currentSize == capacity) {
     expand();
   }
+  tail = (tail + 1) % capacity;
   data[(++tail) % capacity] = element;
   ++currentSize;
 }
@@ -31,8 +32,8 @@ int Queue::dequeue() {
   auto front = data[head];
 
   if (head == tail) {
-    head = -1;
-    tail = -1;
+    head = 0;
+    tail = 0;
   } else {
     head = (++head) & capacity;
   }
@@ -46,7 +47,7 @@ void Queue::expand() {
   int *newData = new int[newCapacity];
 
   size_t lengthCounter = 0;
-  for (int i = 0; i < capacity; ++i) {
+  for (int i = 0; i < currentSize; ++i) {
     newData[i] = data[(head + i) % capacity];
     ++lengthCounter;
   }
@@ -82,8 +83,5 @@ size_t Queue::size() {
 }
 
 bool Queue::isEmpty() {
-  if (currentSize == 0) {
-    return true;
-  }
-  return false;
+  return currentSize == 0;
 }
