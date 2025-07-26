@@ -9,7 +9,7 @@ Queue::Queue(size_t cap) {
   data = new int[capacity];
   head = 0;
   tail = capacity - 1;
-  size = 0;
+  currentSize = 0;
 }
 
 Queue::~Queue() {
@@ -17,15 +17,15 @@ Queue::~Queue() {
 }
 
 void Queue::enqueue(int element) {
-  if (size == capacity) {
+  if (currentSize == capacity) {
     expand();
   }
   data[(++tail) % capacity] = element;
-  ++size;
+  ++currentSize;
 }
 
 int Queue::dequeue() {
-  if (size == 0) {
+  if (currentSize == 0) {
     throw std::out_of_range("Queue is empty");
   }
   auto front = data[head];
@@ -37,7 +37,7 @@ int Queue::dequeue() {
     head = (++head) & capacity;
   }
 
-  --size;
+  --currentSize;
   return front;
 }
 
@@ -55,5 +55,5 @@ void Queue::expand() {
   data = newData;
   delete[] temp;
   capacity = newCapacity;
-  size = capacity;
+  currentSize = capacity;
 }
