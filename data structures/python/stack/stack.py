@@ -8,14 +8,23 @@ class Stack:
         if is_full:
             raise OverflowError("Stack is full")
 
-        self.data[self.current_size] == element
-        current_size += 1
+        self.data[self.current_size] = element
+        self.current_size += 1
 
-    def pop():
+    def pop(self):
         if is_empty:
             raise IndexError("Stack empty")
         self.current_size -= 1
         return self.data[self.current_size]
+
+    def size(self):
+        return self.current_size
+
+    def is_empty(self):
+        return self.current_size == 0
+
+    def is_full(self):
+        return self.current_size == self.capacity
 
 
     
