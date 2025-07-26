@@ -21,7 +21,7 @@ void Queue::enqueue(int element) {
     expand();
   }
   tail = (tail + 1) % capacity;
-  data[(++tail) % capacity] = element;
+  data[tail] = element;
   ++currentSize;
 }
 
@@ -30,14 +30,7 @@ int Queue::dequeue() {
     throw std::out_of_range("Queue is empty");
   }
   auto front = data[head];
-
-  if (head == tail) {
-    head = 0;
-    tail = 0;
-  } else {
-    head = (++head) & capacity;
-  }
-
+  head = (head + 1) % capacity;
   --currentSize;
   return front;
 }
@@ -46,17 +39,15 @@ void Queue::expand() {
   size_t newCapacity = capacity * 2;
   int *newData = new int[newCapacity];
 
-  size_t lengthCounter = 0;
   for (int i = 0; i < currentSize; ++i) {
     newData[i] = data[(head + i) % capacity];
-    ++lengthCounter;
   }
 
   int *temp = data;
   data = newData;
   delete[] temp;
   capacity = newCapacity;
-  currentSize = capacity;
+  tail = currentSize - 1;
 }
 
 int Queue::front() {
