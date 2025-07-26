@@ -10,9 +10,9 @@ class Vector:
 
     def print_vector(self):
         for i, x in enumerate(self.data):
-            print(x, end='')
+            print(x, end="")
             if i != self.currentSize - 1:
-                print(', ', end='')
+                print(", ", end="")
         print()
 
     def is_empty(self):
@@ -30,7 +30,7 @@ class Vector:
         self.data = self.data[:newSize]
 
         if newSize > self.currentSize:
-            while (len(self.data) < newSize):
+            while len(self.data) < newSize:
                 self.data.append(None)
         self.capacity = newSize
         self.capacity = max(self.capacity, newSize)
@@ -60,4 +60,3 @@ class Vector:
             return None
         self.currentSize -= 1
         self.data.pop()
-        

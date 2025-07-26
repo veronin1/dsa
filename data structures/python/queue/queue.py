@@ -9,7 +9,7 @@ class Queue:
     def enqueue(self, value):
         if self.currentSize == self.maxSize:
             raise OverflowError("Queue is full")
-    
+
         self.tail = (self.tail + 1) % self.maxSize
         self.data[self.tail] = value
         self.currentSize += 1
