@@ -6,7 +6,8 @@
 class Queue {
  private:
   int *data;
-  size_t head, tail, size, capacity;
+  size_t head, tail, currentSize, capacity;
+  void expand();
 
  public:
   Queue(size_t cap);
@@ -14,7 +15,10 @@ class Queue {
 
   void enqueue(int element);
   int dequeue();
-  void expand();
+  int front();
+  int back();
+  size_t size();
+  bool isEmpty();
 };
 
 #endif
