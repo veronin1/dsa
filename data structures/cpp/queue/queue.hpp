@@ -12,6 +12,7 @@ class Queue {
   void expand();
 
  public:
+  Queue();
   Queue(size_t cap);
   ~Queue();
 
@@ -22,6 +23,12 @@ class Queue {
   size_t size() const;
   bool isEmpty() const;
 };
+
+template <typename T>
+Queue<T>::Queue()
+    : head(0), tail(capacity - 1), currentSize(0), capacity(1000) {
+  data = new T[capacity];
+}
 
 template <typename T>
 Queue<T>::Queue(size_t cap)
@@ -60,7 +67,7 @@ void Queue<T>::expand() {
   size_t newCapacity = capacity * 2;
   T *newData = new T[newCapacity];
 
-  for (int i = 0; i < currentSize; ++i) {
+  for (size_t i = 0; i < currentSize; ++i) {
     newData[i] = data[(head + i) % capacity];
   }
 
@@ -89,9 +96,6 @@ T Queue<T>::back() const {
 
 template <typename T>
 size_t Queue<T>::size() const {
-  if (isEmpty()) {
-    throw std::out_of_range("Queue empty");
-  }
   return currentSize;
 }
 
