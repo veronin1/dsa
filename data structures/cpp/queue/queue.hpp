@@ -119,4 +119,13 @@ bool Queue<T>::isEmpty() const {
   return currentSize == 0;
 }
 
+template <typename T>
+Queue<T> &Queue<T>::operator=(const Queue &other) {
+  if (this != &other) {
+    delete[] data;
+    copy(other);
+  }
+  return *this;
+}
+
 #endif
