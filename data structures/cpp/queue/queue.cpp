@@ -4,20 +4,22 @@
 
 class Queue {
  private:
-  int *arr;
-  size_t front;
-  size_t rear;
+  int *data;
+  size_t head;
+  size_t tail;
   size_t size;
   size_t capacity;
 
  public:
   Queue(size_t cap) {
     capacity = cap;
-    arr = new int[capacity];
-    front = 0;
-    rear = capacity - 1;
+    data = new int[capacity];
+    head = 0;
+    tail = capacity - 1;
     size = 0;
   }
 
-  ~Queue() { delete[] arr; }
+  ~Queue() { delete[] data; }
+
+  void enqueue(int element) { this->data[this->tail + 1] = element; }
 };
