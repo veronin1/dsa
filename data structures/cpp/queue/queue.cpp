@@ -21,5 +21,13 @@ class Queue {
 
   ~Queue() { delete[] data; }
 
-  void enqueue(int element) { this->data[this->tail + 1] = element; }
+  void enqueue(int element) {
+    if (size == capacity) {
+      expand();
+    }
+    data[(++tail) % capacity] = element;
+    ++size;
+  }
+
+  void expand();
 };
