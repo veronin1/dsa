@@ -10,6 +10,7 @@ class Queue {
   T *data;
   size_t head, tail, currentSize, capacity;
   void expand();
+  void copy(const Queue &other);
 
  public:
   Queue();
@@ -22,7 +23,21 @@ class Queue {
   T back() const;
   size_t size() const;
   bool isEmpty() const;
+  Queue &operator=(const Queue &other);
 };
+
+template <typename T>
+void Queue<T>::copy(const Queue &other) {
+  data = new T[other.capacity];
+  for (size_t i = 0; i < other.currentSize; ++i) {
+    data[i] = other.data[(other.head + i) % other.capacity];
+  }
+
+  head = 0;
+  tail = other.currentSize - 1;
+  currentSize = other.currentSize;
+  capacity = other.capacity;
+}
 
 template <typename T>
 Queue<T>::Queue()
