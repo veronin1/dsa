@@ -12,6 +12,7 @@ class Stack {
   T pop();              // delete
   size_t size();
   bool isEmpty();
+  bool isFull();
 };
 
 template <typename T>
@@ -33,4 +34,19 @@ T Stack<T>::pop() {
   currentSize--;
   T lastElement = data[currentSize];
   return lastElement;
+}
+
+template <typename T>
+size_t Stack<T>::size() {
+  return currentSize;
+}
+
+template <typename T>
+bool Stack<T>::isEmpty() {
+  return currentSize == 0;
+}
+
+template <typename T>
+bool Stack<T>::isFull() {
+  return currentSize == capacity;
 }
