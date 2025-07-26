@@ -7,8 +7,17 @@ class Stack {
   size_t currentSize, capacity;
 
  public:
-  T push(T element); // insert
-  T pop();           // delete
+  void push(T element); // insert
+  T pop();              // delete
   size_t size();
   bool isEmpty();
 };
+
+template <typename T>
+void Stack<T>::push(T element) {
+  if (currentSize == capacity) {
+    pop();
+  }
+  data[currentSize] = element;
+  currentSize++;
+}
