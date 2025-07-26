@@ -11,7 +11,9 @@ class Stack {
   void copy(const Stack &other);
 
  public:
-  Stack(size_t capacity = DEFAULT_INIT_SIZE);
+  Stack();
+  Stack(const Stack &other);
+  Stack &operator=(const Stack &other);
   void push(T element); // insert
   T pop();              // delete
   size_t size();
@@ -33,11 +35,29 @@ void Stack<T>::copy(const Stack &other) {
 }
 
 template <typename T>
-Stack<T>::Stack(size_t cap) : data(new T[cap]), currentSize(0), capacity(cap) {
+Stack<T>::Stack()
+    : data(new T[DEFAULT_INIT_SIZE]),
+      currentSize(0),
+      capacity(DEFAULT_INIT_SIZE) {
 }
+
+template <typename T>
+Stack<T>::Stack(const Stack &other) {
+  copy(other);
+}
+
+template <typename T>
+Stack<T> &Stack<T>::operator=(const Stack &other) {
+  if (this != &other) {
+    delete[] data;
+    copy(other);
+  }
+  return *this;
+}
+
 template <typename T>
 void Stack<T>::push(T element) {
-  if (currentSize == capacity) {
+  if (isFull()) {
     pop();
   }
   data[currentSize] = element;
