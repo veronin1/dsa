@@ -23,4 +23,18 @@ void Queue::enqueue(int element) {
 }
 
 void Queue::expand() {
+  size_t newCapacity = capacity * 2;
+  int *newData = new int[newCapacity];
+
+  size_t lengthCounter = 0;
+  for (int i = 0; i < capacity; ++i) {
+    newData[i] = data[(head + i) % capacity];
+    ++lengthCounter;
+  }
+
+  int *temp = data;
+  data = newData;
+  delete[] temp;
+  capacity = newCapacity;
+  size = capacity;
 }
