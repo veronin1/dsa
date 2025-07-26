@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <stdexcept>
 
 template <typename T>
 class Stack {
@@ -20,4 +21,16 @@ void Stack<T>::push(T element) {
   }
   data[currentSize] = element;
   currentSize++;
+}
+
+// delete and return last element
+template <typename T>
+T Stack<T>::pop() {
+  if (isEmpty()) {
+    throw std::out_of_range("Stack is empty");
+  }
+
+  currentSize--;
+  T lastElement = data[currentSize];
+  return lastElement;
 }
