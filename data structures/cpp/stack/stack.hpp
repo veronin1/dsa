@@ -8,6 +8,7 @@ class Stack {
  private:
   T *data;
   size_t currentSize, capacity;
+  void copy(const Stack &other);
 
  public:
   Stack(size_t capacity = DEFAULT_INIT_SIZE);
@@ -18,6 +19,18 @@ class Stack {
   bool isFull();
   ~Stack();
 };
+
+template <typename T>
+void Stack<T>::copy(const Stack &other) {
+  currentSize = other.currentSize;
+  capacity = other.capacity;
+
+  data = new T[capacity];
+
+  for (size_t i = 0; i < currentSize; ++i) {
+    data[i] = other.data[i];
+  }
+}
 
 template <typename T>
 Stack<T>::Stack(size_t cap) : data(new T[cap]), currentSize(0), capacity(cap) {
