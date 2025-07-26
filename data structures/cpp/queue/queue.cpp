@@ -25,7 +25,7 @@ void Queue::enqueue(int element) {
 }
 
 int Queue::dequeue() {
-  if (currentSize == 0) {
+  if (isEmpty()) {
     throw std::out_of_range("Queue is empty");
   }
   auto front = data[head];
@@ -56,4 +56,34 @@ void Queue::expand() {
   delete[] temp;
   capacity = newCapacity;
   currentSize = capacity;
+}
+
+int Queue::front() {
+  if (isEmpty()) {
+    throw std::out_of_range("Queue empty");
+  }
+  return data[head];
+}
+
+int Queue::back() {
+  if (isEmpty()) {
+    throw std::out_of_range("Queue empty");
+  }
+
+  return data[tail];
+}
+
+size_t Queue::size() {
+  if (isEmpty()) {
+    throw std::out_of_range("Queue empty");
+  }
+
+  return currentSize;
+}
+
+bool Queue::isEmpty() {
+  if (currentSize == 0) {
+    return true;
+  }
+  return false;
 }
