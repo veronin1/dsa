@@ -13,7 +13,7 @@ typedef struct {
   Comparator cmp;
 } Heap;
 
-Heap *createHeap(size_t capacity, HeapType type) {
+Heap *createHeap(size_t capacity, HeapType type, Comparator cmp) {
   Heap *heap = malloc(sizeof(Heap));
   if (!heap) {
     return NULL;
@@ -28,6 +28,7 @@ Heap *createHeap(size_t capacity, HeapType type) {
   heap->size = 0;
   heap->capacity = capacity;
   heap->type = type;
+  heap->cmp = cmp;
   return heap;
 }
 
@@ -87,6 +88,46 @@ void heapifyUp(Heap *heap, size_t index) {
     }
   }
 }
+
+void heapifyDown(Heap *heap, size_t index) {
+  HeapType type = heap->type;
+
+  while (1) {
+    size_t leftChild = index * 2 + 1;
+    size_t rightChild = index * 2 + 2;
+    size_t selected = index;
+
+    // compare with left child
+    if (leftChild < heap->size) {
+      int cmpResult = heap->cmp(heap->data[leftChild], heap->data[selected]);
+
+      if ((type == MAX_HEAP && cmpResult > 0) ||
+          (type == MIN_HEAP && cmpResult < 0)) {
+        selected = leftChild;
+      }
+    }
+
+    // compare with right child
+    if (rightChild < heap->size) {
+      int cmpResult = heap->cmp(heap->data[rightChild], heap->data[selected]);
+
+      if ((type == MAX_HEAP && cmpResult > 0) ||
+          (type == MIN_HEAP && cmpResult < 0)) {
+        selected = rightChild;
+      }
+    }
+
+    if (selected == index) {
+      break;
+    }
+
+    void *tmp = heap->data[selected];
+    heap->data[selected] = heap->data[index];
+    heap->data[index] = tmp;
+    index = selected;
+  }
+}
+
 // adds the element to top of the heap
 void push(Heap *heap, const void *val) {
   if (heap->size == heap->capacity) {
@@ -96,4 +137,12 @@ void push(Heap *heap, const void *val) {
   heap->data[heap->size] = (void *) val;
   heapifyUp(heap, heap->size);
   heap->size++;
+}
+
+void *pop(Heap *heap) {
+  if (heap->size == 0) {
+    return NULL;
+  }
+
+  return NULL;
 }
