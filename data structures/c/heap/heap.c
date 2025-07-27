@@ -59,22 +59,14 @@ void heapifyUp(Heap *heap, size_t index) {
 
   while (index > 0) {
     int parent = (index - 1) / 2;
-    if (heap->type == MAX_HEAP) {
-      if (heap->data[index] > heap->data[parent]) {
-        void *tmp;
-        heap->data[parent] = tmp;
-        heap->data[parent] = heap->data[index];
-        heap->data[index] = tmp;
-        index = parent;
-      }
-    } else if (heap->type == MIN_HEAP) {
-      if (heap->data[index] < heap->data[parent]) {
-        void *tmp;
-        heap->data[parent] = tmp;
-        heap->data[parent] = heap->data[index];
-        heap->data[index] = tmp;
-        index = parent;
-      }
+    if ((heap->type == MAX_HEAP && heap->data[index] > heap->data[parent]) ||
+        (heap->type == MIN_HEAP && heap->data[index] < heap->data[parent])) {
+      void *tmp = heap->data[parent];
+      heap->data[parent] = heap->data[index];
+      heap->data[index] = tmp;
+      index = parent;
+    } else {
+      break;
     }
   }
 }
