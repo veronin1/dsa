@@ -22,7 +22,7 @@ Heap *createHeap(size_t capacity, HeapType type, Comparator cmp) {
   return heap;
 }
 
-Heap *createHeapArray(void **array, size_t size, HeapType type,
+Heap *createHeapArray(void *const *array, size_t size, HeapType type,
                       Comparator cmp) {
   Heap *heap = malloc(sizeof(Heap));
   if (!heap) {
@@ -46,6 +46,7 @@ Heap *createHeapArray(void **array, size_t size, HeapType type,
   buildHeap(heap);
   return heap;
 }
+
 void freeHeap(Heap *heap) {
   if (heap == NULL) return;
 
@@ -160,7 +161,7 @@ void *pop(Heap *heap) {
   return root;
 }
 
-void *peek(Heap *heap) {
+void *peek(const Heap *heap) {
   if (heap->size == 0) {
     return NULL;
   }
@@ -168,17 +169,17 @@ void *peek(Heap *heap) {
   return heap->data[0];
 }
 
-size_t size(Heap *heap) {
+size_t size(const Heap *heap) {
   return heap->size;
 }
 
 // return 1 if true
-int isEmpty(Heap *heap) {
+int isEmpty(const Heap *heap) {
   return heap->size == 0;
 }
 
 // return 1 if true
-int isMaxHeap(Heap *heap) {
+int isMaxHeap(const Heap *heap) {
   // every node is >= the value of the parent
   if (isEmpty(heap)) {
     return 1;
@@ -202,7 +203,7 @@ int isMaxHeap(Heap *heap) {
 }
 
 // return 1 if true
-int isMinHeap(Heap *heap) {
+int isMinHeap(const Heap *heap) {
   // every node is <= the value of the parent
 
   if (isEmpty(heap)) {

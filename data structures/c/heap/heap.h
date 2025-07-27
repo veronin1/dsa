@@ -16,15 +16,16 @@ typedef struct {
 } Heap;
 
 Heap *createHeap(size_t capacity, HeapType type, Comparator cmp);
-Heap *createHeapArray(void **array, size_t size, HeapType type, Comparator cmp);
+Heap *createHeapArray(void *const *array, size_t size, HeapType type,
+                      Comparator cmp);
 void freeHeap(Heap *heap);
 void push(Heap *heap, const void *val);
 void *pop(Heap *heap);
-void *peek(Heap *heap);
-size_t size(Heap *heap);
-int isEmpty(Heap *heap);
-int isMaxHeap(Heap *heap);
-int isMinHeap(Heap *heap);
+void *peek(const Heap *heap);
+size_t size(const Heap *heap);
+int isEmpty(const Heap *heap);
+int isMaxHeap(const Heap *heap);
+int isMinHeap(const Heap *heap);
 int cmp(const void *a, const void *b);
 void buildHeap(Heap *heap);
 
