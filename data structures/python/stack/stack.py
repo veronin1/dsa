@@ -6,10 +6,12 @@ class Stack:
 
     def push(self, element):
         if self.is_full():
-            raise OverflowError("Stack is full")
-
-        self.data[self.current_size] = element
-        self.current_size += 1
+            for i in range(1, self.capacity):
+                self.data[i - 1] = self.data[i]
+            self.data[self.capacity - 1] = element
+        else:
+            self.data[self.current_size] = element
+            self.current_size += 1
 
     def pop(self):
         if self.is_empty():
@@ -25,6 +27,3 @@ class Stack:
 
     def is_full(self):
         return self.current_size == self.capacity
-
-
-    
