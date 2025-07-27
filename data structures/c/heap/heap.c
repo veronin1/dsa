@@ -24,7 +24,21 @@ Heap *createHeap(size_t capacity) {
   return heap;
 }
 
-void resize(Heap *heap);
+void resize(Heap *heap) {
+  size_t newCapacity = heap->capacity * 2;
+  void **newHeap = malloc(sizeof(void *) * newCapacity);
+  if (!newHeap) {
+    return;
+  }
+
+  for (size_t i = 0; i < heap->size; ++i) {
+    newHeap[i] = heap->data[i];
+  }
+
+  free(heap->data);
+  heap->data = newHeap;
+  heap->capacity = newCapacity;
+}
 
 void heapifyUp(Heap *heap, size_t size);
 
