@@ -175,7 +175,6 @@ int isMaxHeap(Heap *heap) {
   }
 
   size_t heapSize = heap->size;
-  size_t firstIndex = 0;
 
   for (size_t i = 0; i <= (heapSize - 2) / 2; ++i) {
     size_t left = 2 * i + 1;
@@ -195,5 +194,22 @@ int isMaxHeap(Heap *heap) {
 // return 1 if true
 int isMinHeap(Heap *heap) {
   // every node is <= the value of the parent
-  return 0;
+
+  if (isEmpty(heap)) {
+    return 1;
+  }
+
+  size_t heapSize = heap->size;
+  for (size_t i = 0; i <= (heapSize - 2) / 2; ++i) {
+    size_t left = 2 * i + 1;
+    size_t right = 2 * i + 2;
+
+    if (left < heapSize && heap->cmp(heap->data[left], heap->data[i]) < 0) {
+      return 0;
+    }
+    if (right < heapSize && heap->cmp(heap->data[right], heap->data[i]) < 0) {
+      return 0;
+    }
+  }
+  return 1;
 }
