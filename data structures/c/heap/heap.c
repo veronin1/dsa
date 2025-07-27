@@ -169,10 +169,34 @@ int isEmpty(Heap *heap) {
 
 // return 1 if true
 int isMaxHeap(Heap *heap) {
+  // every node is >= the value of the parent
+  if (isEmpty(heap)) {
+    return 1;
+  }
+
+  size_t heapSize = heap->size;
+  size_t firstIndex = 0;
+
+  for (size_t i = 0; i <= (heapSize - 2) / 2; ++i) {
+    size_t left = 2 * i + 1;
+    size_t right = 2 * i + 2;
+
+    int leftCompare = heap->cmp(heap->data[left], heap->data[i]);
+
+    if (left < heapSize && leftCompare == 1) {
+      return 1;
+    }
+
+    int rightCompare = heap->cmp(heap->data[right], heap->data[i]);
+    if (right < heapSize && rightCompare == 1) {
+      return 1;
+    }
+  }
   return 0;
 }
 
 // return 1 if true
 int isMinHeap(Heap *heap) {
+  // every node is <= the value of the parent
   return 0;
 }
