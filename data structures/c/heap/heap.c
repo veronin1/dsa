@@ -143,6 +143,9 @@ void *pop(Heap *heap) {
   if (heap->size == 0) {
     return NULL;
   }
-
-  return NULL;
+  void *root = heap->data[0];
+  heap->size--;
+  heap->data[0] = heap->data[heap->size];
+  heapifyDown(heap, 0);
+  return root;
 }
