@@ -1,6 +1,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+typedef int (*Comparator)(const void *, const void *);
+
 typedef enum { MIN_HEAP, MAX_HEAP } HeapType;
 
 typedef struct {
@@ -8,6 +10,7 @@ typedef struct {
   size_t size;
   size_t capacity;
   HeapType type;
+  Comparator cmp;
 } Heap;
 
 Heap *createHeap(size_t capacity, HeapType type) {
@@ -35,6 +38,17 @@ void freeHeap(Heap *heap) {
   free(heap);
 }
 
+int cmp(const void *a, const void *b) {
+  int intA = *(const int *) a;
+  int intB = *(const int *) b;
+  if (intA < intB)
+    return -1;
+  else if (intA > intB)
+    return 1;
+  else
+    return 0;
+}
+
 void resize(Heap *heap) {
   size_t newCapacity = heap->capacity * 2;
   void **newHeap = malloc(sizeof(void *) * newCapacity);
@@ -57,10 +71,13 @@ void heapifyUp(Heap *heap, size_t index) {
     return;
   }
 
+  HeapType type = heap->type;
+
   while (index > 0) {
     int parent = (index - 1) / 2;
-    if ((heap->type == MAX_HEAP && heap->data[index] > heap->data[parent]) ||
-        (heap->type == MIN_HEAP && heap->data[index] < heap->data[parent])) {
+    int cmpResult = heap->cmp(heap->data[index], heap->data[parent]);
+    if ((type == MAX_HEAP && cmpResult > 0 ||
+         (type == MIN_HEAP && cmpResult < 0))) {
       void *tmp = heap->data[parent];
       heap->data[parent] = heap->data[index];
       heap->data[index] = tmp;
