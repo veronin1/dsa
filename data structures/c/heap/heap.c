@@ -29,7 +29,15 @@ Heap *createHeapArray(void **array, size_t size, HeapType type,
     return NULL;
   }
 
-  heap->data = array;
+  heap->data = malloc(sizeof(void *) * size);
+  if (!heap->data) {
+    free(heap);
+    return NULL;
+  }
+
+  for (size_t i = 0; i < size; ++i) {
+    heap->data[i] = array[i];
+  }
   heap->size = size;
   heap->capacity = size;
   heap->type = type;
@@ -56,20 +64,16 @@ int cmp(const void *a, const void *b) {
     return 0;
 }
 
-void resize(Heap *heap) {
+int resize(Heap *heap) {
   size_t newCapacity = heap->capacity * 2;
-  void **newHeap = malloc(sizeof(void *) * newCapacity);
-  if (!newHeap) {
-    return;
+  void **newData = realloc(heap->data, sizeof(void *) * newCapacity);
+  if (!newData) {
+    return 0;
   }
 
-  for (size_t i = 0; i < heap->size; ++i) {
-    newHeap[i] = heap->data[i];
-  }
-
-  free(heap->data);
-  heap->data = newHeap;
+  heap->data = newData;
   heap->capacity = newCapacity;
+  return 1;
 }
 
 // restore heap property after inserting a new element
@@ -83,8 +87,8 @@ void heapifyUp(Heap *heap, size_t index) {
   while (index > 0) {
     int parent = (index - 1) / 2;
     int cmpResult = heap->cmp(heap->data[index], heap->data[parent]);
-    if ((type == MAX_HEAP && cmpResult > 0 ||
-         (type == MIN_HEAP && cmpResult < 0))) {
+    if ((type == MAX_HEAP && cmpResult > 0) ||
+        (type == MIN_HEAP && cmpResult < 0)) {
       void *tmp = heap->data[parent];
       heap->data[parent] = heap->data[index];
       heap->data[index] = tmp;
@@ -137,7 +141,7 @@ void heapifyDown(Heap *heap, size_t index) {
 // adds the element to top of the heap
 void push(Heap *heap, const void *val) {
   if (heap->size == heap->capacity) {
-    resize(heap);
+    if (!resize(heap)) return;
   }
 
   heap->data[heap->size] = (void *) val;
@@ -224,7 +228,7 @@ void buildHeap(Heap *heap) {
   if (heap == NULL || heap->size == 0) {
     return;
   }
-  for (size_t i = (heap->size - 2) / 2; i >= 0; --i) {
+  for (ssize_t i = (heap->size - 2) / 2; i >= 0; --i) {
     heapifyDown(heap, i);
   }
 }
