@@ -1,36 +1,7 @@
+#include "heap.h"
+
 #include <stddef.h>
 #include <stdlib.h>
-
-typedef int (*Comparator)(const void *, const void *);
-
-typedef enum { MIN_HEAP, MAX_HEAP } HeapType;
-
-typedef struct {
-  void **data;
-  size_t size;
-  size_t capacity;
-  HeapType type;
-  Comparator cmp;
-} Heap;
-
-Heap *createHeap(size_t capacity, HeapType type, Comparator cmp) {
-  Heap *heap = malloc(sizeof(Heap));
-  if (!heap) {
-    return NULL;
-  }
-
-  heap->data = malloc(capacity * sizeof(void *));
-  if (!heap->data) {
-    free(heap);
-    return NULL;
-  }
-
-  heap->size = 0;
-  heap->capacity = capacity;
-  heap->type = type;
-  heap->cmp = cmp;
-  return heap;
-}
 
 void freeHeap(Heap *heap) {
   if (heap == NULL) return;
