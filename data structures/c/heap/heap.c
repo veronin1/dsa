@@ -3,6 +3,41 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+Heap *createHeap(size_t capacity, HeapType type, Comparator cmp) {
+  Heap *heap = malloc(sizeof(Heap));
+  if (!heap) {
+    return NULL;
+  }
+
+  heap->data = malloc(capacity * sizeof(void *));
+  if (!heap->data) {
+    free(heap);
+    return NULL;
+  }
+
+  heap->size = 0;
+  heap->capacity = capacity;
+  heap->type = type;
+  heap->cmp = cmp;
+  return heap;
+}
+
+Heap *createHeapArray(void **array, size_t size, HeapType type,
+                      Comparator cmp) {
+  Heap *heap = malloc(sizeof(Heap));
+  if (!heap) {
+    return NULL;
+  }
+
+  heap->data = array;
+  heap->size = size;
+  heap->capacity = size;
+  heap->type = type;
+  heap->cmp = cmp;
+
+  buildHeap(heap);
+  return heap;
+}
 void freeHeap(Heap *heap) {
   if (heap == NULL) return;
 
@@ -183,4 +218,13 @@ int isMinHeap(Heap *heap) {
     }
   }
   return 1;
+}
+
+void buildHeap(Heap *heap) {
+  if (heap == NULL || heap->size == 0) {
+    return;
+  }
+  for (size_t i = (heap->size - 2) / 2; i >= 0; --i) {
+    heapifyDown(heap, i);
+  }
 }

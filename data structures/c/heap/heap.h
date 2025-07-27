@@ -16,6 +16,7 @@ typedef struct {
 } Heap;
 
 Heap *createHeap(size_t capacity, HeapType type, Comparator cmp);
+Heap *createHeapArray(void **array, size_t size, HeapType type, Comparator cmp);
 void freeHeap(Heap *heap);
 void push(Heap *heap, const void *val);
 void *pop(Heap *heap);
@@ -25,5 +26,6 @@ int isEmpty(Heap *heap);
 int isMaxHeap(Heap *heap);
 int isMinHeap(Heap *heap);
 int cmp(const void *a, const void *b);
+void buildHeap(Heap *heap);
 
 #endif
