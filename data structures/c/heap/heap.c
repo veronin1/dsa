@@ -149,3 +149,30 @@ void *pop(Heap *heap) {
   heapifyDown(heap, 0);
   return root;
 }
+
+void *peek(Heap *heap) {
+  if (heap->size == 0) {
+    return NULL;
+  }
+
+  return heap->data[0];
+}
+
+size_t size(Heap *heap) {
+  return heap->size;
+}
+
+// return 1 if true
+int isEmpty(Heap *heap) {
+  return heap->size == 0;
+}
+
+// return 1 if true
+int isMaxHeap(Heap *heap) {
+  return 0;
+}
+
+// return 1 if true
+int isMinHeap(Heap *heap) {
+  return 0;
+}
