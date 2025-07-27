@@ -181,18 +181,15 @@ int isMaxHeap(Heap *heap) {
     size_t left = 2 * i + 1;
     size_t right = 2 * i + 2;
 
-    int leftCompare = heap->cmp(heap->data[left], heap->data[i]);
-
-    if (left < heapSize && leftCompare == 1) {
-      return 1;
+    if (left < heapSize && heap->cmp(heap->data[left], heap->data[i]) > 0) {
+      return 0;
     }
 
-    int rightCompare = heap->cmp(heap->data[right], heap->data[i]);
-    if (right < heapSize && rightCompare == 1) {
-      return 1;
+    if (right < heapSize && heap->cmp(heap->data[right], heap->data[i]) > 0) {
+      return 0;
     }
   }
-  return 0;
+  return 1;
 }
 
 // return 1 if true
