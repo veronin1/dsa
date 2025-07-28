@@ -18,3 +18,6 @@ class Heap:
 
     def _right(self, index):
         return 2 * index + 2
+
+    def _swap(self, i, j):
+        self.data[i], self.data[j] = self.data[j], self.data[i]

@@ -5,7 +5,6 @@ template <typename T>
 class Heap {
  private:
   std::vector<T> data;
-  std::function<bool(T, T)> comp;
 
   size_t parentIdx(size_t index);
   size_t leftNodeIdx(size_t index);
@@ -25,18 +24,6 @@ class Heap {
   bool empty();
   bool isMaxHeap();
   bool isMinHeap();
-};
-
-template <class T>
-class MinHeap : public Heap<T> {
- public:
-  MinHeap();
-};
-
-template <class T>
-class MaxHeap : public Heap<T> {
- public:
-  MaxHeap();
 };
 
 template <typename T>
