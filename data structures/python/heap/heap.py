@@ -11,6 +11,15 @@ class Heap:
         if index == 0:
             return
 
+        while index > 0:
+            parent = self._parent(index)
+
+            if self._compare(self.data[index], self.data[parent]):
+                self._swap(index, parent)
+                index = parent
+            else:
+                break
+
     def _parent(self, index):
         return (index - 1) // 2
 
