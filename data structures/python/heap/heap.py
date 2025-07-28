@@ -1,6 +1,7 @@
 class Heap:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, data, type):
+        self.data = data if data is not None else []
+        self.type = type.lower()
 
     def push(self, val):
         self.data.append(val)
@@ -21,3 +22,9 @@ class Heap:
 
     def _swap(self, i, j):
         self.data[i], self.data[j] = self.data[j], self.data[i]
+
+    def _compare(self, i, j):
+        if self.type == "min":
+            return self.data[i] < self.data[j]
+        else:
+            return self.data[i] > self.data[j]
