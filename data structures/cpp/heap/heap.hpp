@@ -1,20 +1,42 @@
+#include <functional>
 #include <vector>
 
 template <typename T>
 class Heap {
  private:
   std::vector<T> data;
+  std::function<bool(T, T)> comp;
+
   size_t parentIdx(size_t index);
   size_t leftNodeIdx(size_t index);
   size_t rightNodeIdx(size_t index);
 
  public:
+  Heap(std::function<bool(T, T)> comp);
+  Heap(const Heap &other);
+
   Heap();
   ~Heap();
 
   void push(const T &val);
+  T pop();
+  T peek();
+  unsigned int size;
+  bool empty();
   bool isMaxHeap();
   bool isMinHeap();
+};
+
+template <class T>
+class MinHeap : public Heap<T> {
+ public:
+  MinHeap();
+};
+
+template <class T>
+class MaxHeap : public Heap<T> {
+ public:
+  MaxHeap();
 };
 
 template <typename T>
