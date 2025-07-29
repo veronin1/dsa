@@ -1,23 +1,26 @@
 #include <functional>
+#include <utility>
 #include <vector>
 
 template <typename T>
 class Heap {
  private:
   std::vector<T> data;
+  std::function<bool(const T &, const T &)> comp;
 
   size_t parentIdx(size_t index);
   size_t leftNodeIdx(size_t index);
   size_t rightNodeIdx(size_t index);
 
  public:
-  Heap(std::function<bool(T, T)> comp);
+  Heap(std::function<bool(const T &, const T &)> comp);
+  Heap();
   Heap(const Heap &other);
 
-  Heap();
   ~Heap();
 
   void push(const T &val);
+  void heapifyUp(size_t index);
   T pop();
   T peek();
   unsigned int size;
@@ -42,8 +45,16 @@ size_t Heap<T>::rightNodeIdx(size_t index) {
 }
 
 template <typename T>
-Heap<T>::Heap() {
-  data = new std::vector<T>();
+bool comp(const T &i, const T &j) {
+  return i > j;
+}
+
+template <typename T>
+Heap<T>::Heap(std::function<bool(const T &, const T &)> comp) : comp(comp) {
+}
+
+template <typename T>
+Heap<T>::Heap() : comp(std::less<T>()) {
 }
 
 template <typename T>
@@ -52,9 +63,30 @@ Heap<T>::~Heap() {
 }
 
 template <typename T>
+void Heap<T>::heapifyUp(size_t index) {
+  if (index == 0) {
+    return;
+  }
+
+  while (index > 0) {
+    size_t parent = parentIdx(index);
+
+    if (comp(data[index], data[parent])) {
+      std::swap(index, parent);
+      index = parent;
+    } else {
+      break;
+    }
+  }
+
+  return;
+}
+
+template <typename T>
 void Heap<T>::push(const T &val) {
   data.push_back(val);
   size_t index = data.size() - 1;
+  heapifyUp(index);
 }
 
 template <typename T>
@@ -79,10 +111,10 @@ bool Heap<T>::isMinHeap() {
     size_t left = leftNodeIdx(i);
     size_t right = rightNodeIdx(i);
 
-    if (left < data.size() && data[left] > data[i]) {
+    if (left < data.size() && data[left] < data[i]) {
       return false;
     }
-    if (right < data.size() && data[right] > data[i]) {
+    if (right < data.size() && data[right] < data[i]) {
       return false;
     }
   }
