@@ -20,6 +20,16 @@ class Heap:
             else:
                 break
 
+    def _bubble_down(self, index)
+        
+
+    def pop(self)
+         front = data[0]
+         data.remove(0)
+         self._swap(front, data[0])
+         self._bubble_down(len(self.data - 1)
+    
+            
     def _parent(self, index):
         return (index - 1) // 2
 
