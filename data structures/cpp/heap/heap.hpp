@@ -1,4 +1,5 @@
 #include <functional>
+#include <stdexcept>
 #include <utility>
 #include <vector>
 
@@ -21,6 +22,7 @@ class Heap {
 
   void push(const T &val);
   void heapifyUp(size_t index);
+  void heapifyDown(size_t index);
   T pop();
   T peek();
   unsigned int size;
@@ -83,10 +85,28 @@ void Heap<T>::heapifyUp(size_t index) {
 }
 
 template <typename T>
+void Heap<T>::heapifyDown(size_t index) {
+  return;
+}
+
+template <typename T>
 void Heap<T>::push(const T &val) {
   data.push_back(val);
   size_t index = data.size() - 1;
   heapifyUp(index);
+}
+
+template <typename T>
+T Heap<T>::pop() {
+  if (data.empty()) {
+    return std::out_of_range("Heap is empty");
+  }
+
+  T frontValue = data[0];
+  std::swap(data[0], data.back());
+  data.pop_back();
+  heapifyDown(0);
+  return frontValue;
 }
 
 template <typename T>
