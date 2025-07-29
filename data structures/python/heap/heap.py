@@ -47,6 +47,11 @@ class Heap:
     def _size(self):
         return data.size()
 
+    def _empty(self):
+        return not data
+
+    
+
     def _parent(self, index):
         return (index - 1) // 2
 
