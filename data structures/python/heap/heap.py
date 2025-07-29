@@ -42,8 +42,11 @@ class Heap:
          data.remove(0)
          self._swap(front, data[0])
          self._bubble_down(len(self.data - 1)
-    
-            
+
+
+    def _size(self):
+        return data.size()
+
     def _parent(self, index):
         return (index - 1) // 2
 
