@@ -48,11 +48,6 @@ size_t Heap<T>::rightNodeIdx(size_t index) {
 }
 
 template <typename T>
-bool comp(const T &i, const T &j) {
-  return i > j;
-}
-
-template <typename T>
 Heap<T>::Heap(std::function<bool(const T &, const T &)> comp) : comp(comp) {
 }
 
@@ -61,8 +56,20 @@ Heap<T>::Heap() : comp(std::less<T>()) {
 }
 
 template <typename T>
+Heap<T>::Heap(const Heap &other) {
+  data = other.data;
+  comp = other.comp;
+}
+
+template <typename T>
 Heap<T>::~Heap() {
-  delete data;
+}
+
+template <typename T>
+void Heap<T>::push(const T &val) {
+  data.push_back(val);
+  size_t index = data.size() - 1;
+  heapifyUp(index);
 }
 
 template <typename T>
@@ -75,7 +82,7 @@ void Heap<T>::heapifyUp(size_t index) {
     size_t parent = parentIdx(index);
 
     if (comp(data[index], data[parent])) {
-      std::swap(index, parent);
+      std::swap(data[index], data[parent]);
       index = parent;
     } else {
       break;
@@ -97,11 +104,11 @@ void Heap<T>::heapifyDownRecursive(size_t index) {
 
   if (right < data.size() && comp(data[right], data[smallest])) {
     smallest = right;
+  }
 
-    if (smallest != index) {
-      std::swap(data[index], data[smallest]);
-      heapifyDownRecursive(index);
-    }
+  if (smallest != index) {
+    std::swap(data[index], data[smallest]);
+    heapifyDownRecursive(smallest);
   }
 }
 
@@ -132,16 +139,9 @@ void Heap<T>::heapifyDownIterative(size_t index) {
 }
 
 template <typename T>
-void Heap<T>::push(const T &val) {
-  data.push_back(val);
-  size_t index = data.size() - 1;
-  heapifyUp(index);
-}
-
-template <typename T>
 T Heap<T>::pop() {
   if (empty()) {
-    return std::out_of_range("Heap is empty");
+    throw std::out_of_range("Heap is empty");
   }
 
   T frontValue = data[0];
@@ -154,7 +154,7 @@ T Heap<T>::pop() {
 template <typename T>
 T Heap<T>::peek() {
   if (empty()) {
-    return std::out_of_range("Heap is empty");
+    throw std::out_of_range("Heap is empty");
   }
 
   return data[0];
