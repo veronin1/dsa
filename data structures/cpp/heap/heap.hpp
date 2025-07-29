@@ -22,7 +22,8 @@ class Heap {
 
   void push(const T &val);
   void heapifyUp(size_t index);
-  void heapifyDown(size_t index);
+  void heapifyDownRecursive(size_t index);
+  void heapifyDownIterative(size_t index);
   T pop();
   T peek();
   unsigned int size;
@@ -85,7 +86,27 @@ void Heap<T>::heapifyUp(size_t index) {
 }
 
 template <typename T>
-void Heap<T>::heapifyDown(size_t index) {
+void Heap<T>::heapifyDownRecursive(size_t index) {
+  size_t left = leftNodeIdx(index);
+  size_t right = rightNodeIdx(index);
+  size_t smallest = index;
+
+  if (left < data.size() && comp(data[left], data[smallest])) {
+    smallest = left;
+  }
+
+  if (right < data.size() && comp(data[right], data[smallest])) {
+    smallest = right;
+
+    if (smallest != index) {
+      std::swap(data[index], data[smallest]);
+      heapifyDownRecursive(index);
+    }
+  }
+}
+
+template <typename T>
+void Heap<T>::heapifyDownIterative(size_t index) {
   return;
 }
 
