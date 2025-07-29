@@ -107,7 +107,28 @@ void Heap<T>::heapifyDownRecursive(size_t index) {
 
 template <typename T>
 void Heap<T>::heapifyDownIterative(size_t index) {
-  return;
+  size_t length = data.size();
+
+  while (true) {
+    size_t left = leftNodeIdx(index);
+    size_t right = rightNodeIdx(index);
+    size_t smallest = index;
+
+    if (left < length && comp(data[left], data[smallest])) {
+      smallest = left;
+    }
+
+    if (right < length && comp(data[right], data[smallest])) {
+      smallest = right;
+    }
+
+    if (smallest == index) {
+      break;
+    }
+
+    std::swap(data[index], data[smallest]);
+    index = smallest;
+  }
 }
 
 template <typename T>
