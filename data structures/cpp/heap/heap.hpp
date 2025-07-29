@@ -26,7 +26,7 @@ class Heap {
   void heapifyDownIterative(size_t index);
   T pop();
   T peek();
-  unsigned int size;
+  unsigned int size();
   bool empty();
   bool isMaxHeap();
   bool isMinHeap();
@@ -140,15 +140,34 @@ void Heap<T>::push(const T &val) {
 
 template <typename T>
 T Heap<T>::pop() {
-  if (data.empty()) {
+  if (empty()) {
     return std::out_of_range("Heap is empty");
   }
 
   T frontValue = data[0];
   std::swap(data[0], data.back());
   data.pop_back();
-  heapifyDown(0);
+  heapifyDownRecursive(0);
   return frontValue;
+}
+
+template <typename T>
+T Heap<T>::peek() {
+  if (empty()) {
+    return std::out_of_range("Heap is empty");
+  }
+
+  return data[0];
+}
+
+template <typename T>
+unsigned int Heap<T>::size() {
+  return data.size();
+}
+
+template <typename T>
+bool Heap<T>::empty() {
+  return data.empty();
 }
 
 template <typename T>
