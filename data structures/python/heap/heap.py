@@ -20,7 +20,7 @@ class Heap:
             else:
                 break
 
-    def _bubble_down(self, index)
+    def _bubble_down(self, index):
         left = self._left(index)
         right = self._right(index)
         smallest = 0
@@ -31,8 +31,10 @@ class Heap:
         if (self._compare(data[right], data[smallest]):
             smallest = right
 
-        self._swap(data[index], data[smallest])
-        index = smallest
+       if smallest != index:
+           self._swap(data[index], data[smallest])
+           index = smallest
+           self._bubble_down(index)
         
 
     def pop(self):
