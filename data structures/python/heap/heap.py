@@ -21,9 +21,21 @@ class Heap:
                 break
 
     def _bubble_down(self, index)
+        left = self._left(index)
+        right = self._right(index)
+        smallest = 0
+
+        if (self._compare(data[left], data[smallest]):
+            smallest = left
+
+        if (self._compare(data[right], data[smallest]):
+            smallest = right
+
+        self._swap(data[index], data[smallest])
+        index = smallest
         
 
-    def pop(self)
+    def pop(self):
          front = data[0]
          data.remove(0)
          self._swap(front, data[0])
