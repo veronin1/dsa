@@ -43,11 +43,13 @@ TreeNode *insert_node(TreeNode *node, int value) {
     new_node->left = NULL;
     new_node->right = NULL;
 
-    if (value > node->data) {
-      node->right = insert_node(node->right, value);
-    } else if (value < node->data) {
-      node->left = insert_node(node->left, value);
-    }
+    return new_node;
+  }
+
+  if (value > node->data) {
+    node->right = insert_node(node->right, value);
+  } else if (value < node->data) {
+    node->left = insert_node(node->left, value);
   }
   return node;
 }
