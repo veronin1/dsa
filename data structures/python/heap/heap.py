@@ -57,6 +57,9 @@ class Heap:
             self._swap(index, smallest)
             index = smallest
 
+    def clear(self):
+        self.data.clear()
+
     def _parent(self, index):
         return (index - 1) // 2
 
