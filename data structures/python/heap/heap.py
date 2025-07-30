@@ -1,5 +1,5 @@
 class Heap:
-    def __init__(self, data, type):
+    def __init__(self, data=None, type="min"):
         self.data = data if data is not None else []
         self.type = type.lower()
 
@@ -7,50 +7,38 @@ class Heap:
         self.data.append(val)
         self._bubble_up(len(self.data) - 1)
 
-    def _bubble_up(self, index):
-        if index == 0:
-            return
+    def pop(self):
+        if not self.data:
+            return None
 
+        self._swap(0, len(self.data) - 1)
+        root = self.data.pop()
+        self._bubble_down_recursive(0)
+        return root
+
+    def _bubble_up(self, index):
         while index > 0:
             parent = self._parent(index)
-
-            if self._compare(self.data[index], self.data[parent]):
+            if self._compare(index, parent):
                 self._swap(index, parent)
                 index = parent
             else:
                 break
 
-    def _bubble_down(self, index):
+    def _bubble_down_recursive(self, index):
         left = self._left(index)
         right = self._right(index)
-        smallest = 0
+        smallest = index
 
-        if (self._compare(data[left], data[smallest]):
+        if left < len(self.data) and self._compare(left, smallest):
             smallest = left
 
-        if (self._compare(data[right], data[smallest]):
+        if right < len(self.data) and self._compare(right, smallest):
             smallest = right
 
-       if smallest != index:
-           self._swap(data[index], data[smallest])
-           index = smallest
-           self._bubble_down(index)
-        
-
-    def pop(self):
-         front = data[0]
-         data.remove(0)
-         self._swap(front, data[0])
-         self._bubble_down(len(self.data - 1)
-
-
-    def _size(self):
-        return data.size()
-
-    def _empty(self):
-        return not data
-
-    
+        if smallest != index:
+            self._swap(index, smallest)
+            self._bubble_down_recursive(smallest)
 
     def _parent(self, index):
         return (index - 1) // 2
@@ -69,3 +57,9 @@ class Heap:
             return self.data[i] < self.data[j]
         else:
             return self.data[i] > self.data[j]
+
+    def size(self):
+        return len(self.data)
+
+    def empty(self):
+        return not self.data
