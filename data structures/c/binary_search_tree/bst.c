@@ -67,4 +67,16 @@ TreeNode *delete_node(TreeNode *root, int value) {
     root = NULL;
     return root;
   }
+
+  if (root->left == NULL && root->right != NULL) {
+    TreeNode *temp = root;
+    root = root->right;
+    free(temp);
+    return root;
+  } else if (root->left != NULL && root->right == NULL) {
+    TreeNode *temp = root;
+    root = root->left;
+    free(temp);
+    return root;
+  }
 }
