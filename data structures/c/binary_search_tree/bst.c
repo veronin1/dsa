@@ -1,18 +1,6 @@
-#include <stddef.h>
+#include "bst.h"
+
 #include <stdlib.h>
-
-typedef struct Node {
-  int data;
-  struct Node *left;
-  struct Node *right;
-} TreeNode;
-
-typedef struct {
-  TreeNode *root;
-  size_t size;
-} BinarySearchTree;
-
-TreeNode *insert_node(TreeNode *node, int value);
 
 BinarySearchTree *createTree(const size_t size) {
   BinarySearchTree *tree = malloc(sizeof(BinarySearchTree));
