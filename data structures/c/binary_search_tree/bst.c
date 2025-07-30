@@ -53,6 +53,7 @@ void remove_node(BinarySearchTree *tree, int value) {
 
 TreeNode *find_min(TreeNode *node) {
   if (!node) return NULL;
+
   while (node->left != NULL) {
     node = node->left;
   }
@@ -62,21 +63,32 @@ TreeNode *find_min(TreeNode *node) {
 TreeNode *delete_node(TreeNode *root, int value) {
   if (!root) return NULL;
 
-  if (root->left == NULL && root->right == NULL) {
-    free(root);
-    root = NULL;
-    return root;
-  }
+  if (value < root->data) {
+    root->left = delete_node(root->left, value);
+  } else if (value > root->data) {
+    root->right = delete_node(root->right, value);
+  } else {
+    if (root->left == NULL && root->right == NULL) {
+      free(root);
+      root = NULL;
+      return root;
+    }
 
-  if (root->left == NULL && root->right != NULL) {
-    TreeNode *temp = root;
-    root = root->right;
-    free(temp);
-    return root;
-  } else if (root->left != NULL && root->right == NULL) {
-    TreeNode *temp = root;
-    root = root->left;
-    free(temp);
-    return root;
+    if (root->left == NULL && root->right != NULL) {
+      TreeNode *temp = root;
+      root = root->right;
+      free(temp);
+      return root;
+    } else if (root->left != NULL && root->right == NULL) {
+      TreeNode *temp = root;
+      root = root->left;
+      free(temp);
+      return root;
+    }
+
+    TreeNode *temp = find_min(root->right);
+    root->data = temp->data;
+    root->right = delete_node(root->right, temp->data);
   }
+  return root;
 }
