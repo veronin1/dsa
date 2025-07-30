@@ -92,3 +92,32 @@ TreeNode *delete_node(TreeNode *root, int value) {
   }
   return root;
 }
+
+bool contains(const BinarySearchTree *tree, int value) {
+  if (!tree) return false;
+
+  if (tree->root->data == value) {
+    return true;
+  }
+
+  TreeNode *tmp;
+  tmp = contains_node(tree->root, value);
+  if (tmp->data == value) {
+    return true;
+  }
+  return false;
+}
+
+TreeNode *contains_node(TreeNode *node, int value) {
+  if (node->data == value) {
+    return node;
+  }
+
+  if (value < node->data) {
+    return contains_node(node->left, value);
+  } else if (value > node->data) {
+    return contains_node(node->right, value);
+  }
+
+  return NULL;
+}
