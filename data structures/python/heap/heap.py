@@ -35,10 +35,27 @@ class Heap:
 
         if right < len(self.data) and self._compare(right, smallest):
             smallest = right
-
         if smallest != index:
             self._swap(index, smallest)
             self._bubble_down_recursive(smallest)
+
+    def _bubble_down_iterative(self, index):
+        left = self._left(index)
+        right = self._right(index)
+        smallest = index
+
+        while True:
+            if left < len(self.data) and self._compare(left, smallest):
+                smallest = left
+
+            if right < len(self.data) and self._compare(right, smallest):
+                smallest = right
+
+            if smallest == index:
+                break
+
+            self._swap(index, smallest)
+            index = smallest
 
     def _parent(self, index):
         return (index - 1) // 2
