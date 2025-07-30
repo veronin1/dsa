@@ -41,3 +41,30 @@ TreeNode *insert_node(TreeNode *node, int value) {
   }
   return node;
 }
+
+void remove_node(BinarySearchTree *tree, int value) {
+  if (!tree) {
+    return;
+  }
+
+  tree->root = delete_node(tree->root, value);
+  tree->size--;
+}
+
+TreeNode *find_min(TreeNode *node) {
+  if (!node) return NULL;
+  while (node->left != NULL) {
+    node = node->left;
+  }
+  return node;
+}
+
+TreeNode *delete_node(TreeNode *root, int value) {
+  if (!root) return NULL;
+
+  if (root->left == NULL && root->right == NULL) {
+    free(root);
+    root = NULL;
+    return root;
+  }
+}
