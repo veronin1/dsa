@@ -117,3 +117,7 @@ TreeNode *contains_node(TreeNode *node, int value) {
 
   return NULL;
 }
+
+size_t size(const BinarySearchTree *tree) {
+  return tree->size;
+}
