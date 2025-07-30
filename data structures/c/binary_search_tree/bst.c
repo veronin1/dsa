@@ -12,6 +12,8 @@ typedef struct {
   size_t size;
 } BinarySearchTree;
 
+TreeNode *insert_node(TreeNode *node, int value);
+
 BinarySearchTree *createTree(const size_t size) {
   BinarySearchTree *tree = malloc(sizeof(BinarySearchTree));
   if (tree == NULL) {
@@ -32,12 +34,25 @@ void insert(BinarySearchTree *tree, const int element) {
   if (!temp) {
     return;
   }
+
+  while (1) {
+    TreeNode *current = tree->root;
+    temp = insert_node(current, element);
+
+    if (temp == NULL) {
+      temp->data = element;
+      current = temp;
+      free(temp);
+      break;
+    }
+  }
 }
 
 TreeNode *insert_node(TreeNode *node, int value) {
   if (value > node->data) {
     return node->right;
+  } else if (value < node->data) {
+    return node->left;
   }
-
-  return node->left;
+  return NULL;
 }
