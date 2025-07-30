@@ -19,12 +19,17 @@ I started this repo to:
 
 ### Data Structures
 
-| #   | Structure   | C                                                                              | C++                                                                                | Python                                                                                   |
-| --- | ----------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| 1   | Linked List | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/linked_list) | [C++](https://github.com/veronin1/dsa/tree/main/data%20structures/cpp/linked_list) | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/linked_list) |
-| 2   | Vector      | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/vector)      | [C++](https://github.com/veronin1/dsa/tree/main/data%20structures/cpp/vector)      | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/vector)      |
-| 3   | Stack       | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/stack)       | [C++](https://github.com/veronin1/dsa/tree/main/data%20structures/cpp/stack)       | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/stack)       |
-| 4   | Queue       | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/queue)       | [C++](https://github.com/veronin1/dsa/tree/main/data%20structures/cpp/queue)       | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/queue)       |
+Here's the updated table with **Heap** entries added for each language:
+
+### Data Structures
+
+| # | Structure   | C                                                                              | C++                                                                                | Python                                                                                   |
+| - | ----------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 1 | Linked List | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/linked_list) | [C++](https://github.com/veronin1/dsa/tree/main/data%20structures/cpp/linked_list) | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/linked_list) |
+| 2 | Vector      | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/vector)      | [C++](https://github.com/veronin1/dsa/tree/main/data%20structures/cpp/vector)      | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/vector)      |
+| 3 | Stack       | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/stack)       | [C++](https://github.com/veronin1/dsa/tree/main/data%20structures/cpp/stack)       | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/stack)       |
+| 4 | Queue       | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/queue)       | [C++](https://github.com/veronin1/dsa/tree/main/data%20structures/cpp/queue)       | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/queue)       |
+| 5 | Heap        | [C](https://github.com/veronin1/dsa/tree/main/data%20structures/c/heap)        | [C++](https://github.com/veronin1/dsa/tree/main/data%20structures/cpp/heap)        | [Python](https://github.com/veronin1/dsa/tree/main/data%20structures/python/heap)        |
 
 ## License
 
