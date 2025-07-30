@@ -94,21 +94,17 @@ TreeNode *delete_node(TreeNode *root, int value) {
 }
 
 bool contains(const BinarySearchTree *tree, int value) {
-  if (!tree) return false;
+  if (!tree || !tree->root) return false;
 
-  if (tree->root->data == value) {
-    return true;
-  }
-
-  TreeNode *tmp;
-  tmp = contains_node(tree->root, value);
-  if (tmp->data == value) {
-    return true;
-  }
-  return false;
+  TreeNode *tmp = contains_node(tree->root, value);
+  return (tmp != NULL);
 }
 
 TreeNode *contains_node(TreeNode *node, int value) {
+  if (!node) {
+    return NULL;
+  }
+
   if (node->data == value) {
     return node;
   }
