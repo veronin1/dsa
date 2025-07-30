@@ -12,6 +12,8 @@ The heap can be interfaced through the following methods:
 * `clear()`: Empties the heap completely.
 * `size()`: Returns the number of elements currently in the heap.
 * `empty()`: Returns `True` if the heap is empty, otherwise `False`.
+
+### Internal Methods for Heap Logic
 * `_bubble_up(index)`: Moves the element at the given index up the heap until the heap property is restored.
 * `_bubble_down_recursive(index)`: Recursively moves the element at the given index down the heap to maintain order.
 * `_bubble_down_iterative(index)`: Iteratively does the same as `_bubble_down_recursive`, used as an alternative.
