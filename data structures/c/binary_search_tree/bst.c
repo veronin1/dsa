@@ -177,11 +177,11 @@ bool isLeaf(const TreeNode *node) {
 }
 
 size_t size(const BinarySearchTree *tree) {
-  return tree->size;
+  return (tree ? tree->size : 0);
 }
 
 bool empty(const BinarySearchTree *tree) {
-  return tree->size == 0;
+  return (!tree || tree->size == 0);
 }
 
 int *in_order_traversal(const BinarySearchTree *tree, size_t *out_size) {
