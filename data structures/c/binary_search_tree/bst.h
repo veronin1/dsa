@@ -1,44 +1,51 @@
-#ifndef BST_H
-#define BST_H
+#ifndef BST_H_
+#define BST_H_
 
 #include <stdbool.h>
 #include <stddef.h>
 
-typedef struct Node {
+typedef struct bst_node {
   int data;
-  struct Node *left;
-  struct Node *right;
-} TreeNode;
+  struct bst_node *left;
+  struct bst_node *right;
+} bst_node;
 
 typedef struct {
-  TreeNode *root;
+  bst_node *root;
   size_t size;
-} BinarySearchTree;
+} bst_tree;
 
-BinarySearchTree *createTree(void);
-void destroyTree(BinarySearchTree *tree);
-TreeNode *create_node(int value);
+bst_tree *bst_create(void);
+void bst_destroy(bst_tree *tree);
+void bst_clear(bst_tree *tree);
 
-void insert(BinarySearchTree *tree, int value);
-TreeNode *insert_node(TreeNode *node, int value);
-void remove_node(BinarySearchTree *tree, int value);
-TreeNode *find_min(TreeNode *node);
-TreeNode *delete_node(TreeNode *root, int value);
-bool contains(const BinarySearchTree *tree, int value);
-TreeNode *contains_node(TreeNode *node, int value);
-void clear(BinarySearchTree *tree);
-TreeNode *clear_bst(TreeNode *node);
-int height(const BinarySearchTree *tree);
-int height_helper(TreeNode *node);
-bool isLeaf(const TreeNode *node);
-size_t size(const BinarySearchTree *tree);
-bool empty(const BinarySearchTree *tree);
+bst_node *bst_node_create(int value);
 
-int *in_order_traversal(const BinarySearchTree *tree, size_t *out_size);
-void in_order_helper(TreeNode *node, int **array, size_t *size);
-int *pre_order_traversal(const BinarySearchTree *tree, size_t *out_size);
-void pre_order_helper(TreeNode *node, int **array, size_t *size);
-int *post_order_traversal(const BinarySearchTree *tree, size_t *out_size);
-void post_order_helper(TreeNode *node, int **array, size_t *size);
+void bst_insert(bst_tree *tree, int value);
+bst_node *bst_insert_node(bst_node *node, int value);
 
-#endif
+void bst_remove(bst_tree *tree, int value);
+bst_node *bst_delete_node(bst_node *node, int value);
+
+bool bst_contains(const bst_tree *tree, int value);
+bst_node *bst_find_node(bst_node *node, int value);
+
+size_t bst_size(const bst_tree *tree);
+bool bst_empty(const bst_tree *tree);
+int bst_height(const bst_tree *tree);
+int bst_height_node(bst_node *node);
+bool bst_is_leaf(const bst_node *node);
+
+bst_node *bst_find_min(bst_node *node);
+bst_node *bst_clear_nodes(bst_node *node);
+
+int *bst_in_order(const bst_tree *tree, size_t *out_size);
+void bst_in_order_helper(bst_node *node, int **array, size_t *size);
+
+int *bst_pre_order(const bst_tree *tree, size_t *out_size);
+void bst_pre_order_helper(bst_node *node, int **array, size_t *size);
+
+int *bst_post_order(const bst_tree *tree, size_t *out_size);
+void bst_post_order_helper(bst_node *node, int **array, size_t *size);
+
+#endif // BST_H_

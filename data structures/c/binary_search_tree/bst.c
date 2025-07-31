@@ -2,8 +2,8 @@
 
 #include <stdlib.h>
 
-BinarySearchTree *createTree(void) {
-  BinarySearchTree *tree = malloc(sizeof(BinarySearchTree));
+bst_tree *bst_create(void) {
+  bst_tree *tree = malloc(sizeof(bst_tree));
   if (tree == NULL) {
     return NULL;
   }
@@ -13,14 +13,14 @@ BinarySearchTree *createTree(void) {
   return tree;
 }
 
-void destroyTree(BinarySearchTree *tree) {
+void bst_destroy(bst_tree *tree) {
   if (!tree) return;
-  clear(tree);
+  bst_clear(tree);
   free(tree);
 }
 
-TreeNode *create_node(int value) {
-  TreeNode *node = (TreeNode *) malloc(sizeof(TreeNode));
+bst_node *bst_node_create(int value) {
+  bst_node *node = (bst_node *) malloc(sizeof(bst_node));
   if (!node) return NULL;
 
   node->data = value;
@@ -29,40 +29,43 @@ TreeNode *create_node(int value) {
   return node;
 }
 
-void insert(BinarySearchTree *tree, const int element) {
+void bst_insert(bst_tree *tree, const int element) {
   if (tree == NULL) {
     return;
   }
 
-  bool exists = contains(tree, element);
-  tree->root = insert_node(tree->root, element);
+  bool exists = bst_contains(tree, element);
+  tree->root = bst_insert_node(tree->root, element);
   if (!exists) tree->size++;
 }
 
-TreeNode *insert_node(TreeNode *node, int value) {
+bst_node *bst_insert_node(bst_node *node, int value) {
   if (node == NULL) {
-    return create_node(value);
+    return bst_node_create(value);
   }
 
   if (value > node->data) {
-    node->right = insert_node(node->right, value);
+    node->right = bst_insert_node(node->right, value);
   } else if (value < node->data) {
-    node->left = insert_node(node->left, value);
+    node->left = bst_insert_node(node->left, value);
   }
   return node;
 }
 
-void remove_node(BinarySearchTree *tree, int value) {
+void bst_remove(bst_tree *tree, int value) {
   if (!tree) {
     return;
   }
 
-  bool deleted = false;
-  tree->root = delete_node(tree->root, value);
-  if (deleted) tree->size--;
+  tree->root = bst_delete_node(tree->root, value);
+
+  bool deleted = bst_contains(tree, value) ? true : false;
+  if (deleted) {
+    tree->size--;
+  }
 }
 
-TreeNode *find_min(TreeNode *node) {
+bst_node *bst_find_min(bst_node *node) {
   if (!node) return NULL;
 
   while (node->left != NULL) {
@@ -71,13 +74,13 @@ TreeNode *find_min(TreeNode *node) {
   return node;
 }
 
-TreeNode *delete_node(TreeNode *root, int value) {
+bst_node *bst_delete_node(bst_node *root, int value) {
   if (!root) return NULL;
 
   if (value < root->data) {
-    root->left = delete_node(root->left, value);
+    root->left = bst_delete_node(root->left, value);
   } else if (value > root->data) {
-    root->right = delete_node(root->right, value);
+    root->right = bst_delete_node(root->right, value);
   } else {
     if (root->left == NULL && root->right == NULL) {
       free(root);
@@ -86,32 +89,32 @@ TreeNode *delete_node(TreeNode *root, int value) {
     }
 
     if (root->left == NULL && root->right != NULL) {
-      TreeNode *temp = root;
+      bst_node *temp = root;
       root = root->right;
       free(temp);
       return root;
     } else if (root->left != NULL && root->right == NULL) {
-      TreeNode *temp = root;
+      bst_node *temp = root;
       root = root->left;
       free(temp);
       return root;
     }
 
-    TreeNode *temp = find_min(root->right);
+    bst_node *temp = bst_find_min(root->right);
     root->data = temp->data;
-    root->right = delete_node(root->right, temp->data);
+    root->right = bst_delete_node(root->right, temp->data);
   }
   return root;
 }
 
-bool contains(const BinarySearchTree *tree, int value) {
+bool bst_contains(const bst_tree *tree, int value) {
   if (!tree || !tree->root) return false;
 
-  TreeNode *tmp = contains_node(tree->root, value);
+  bst_node *tmp = bst_find_node(tree->root, value);
   return (tmp != NULL);
 }
 
-TreeNode *contains_node(TreeNode *node, int value) {
+bst_node *bst_find_node(bst_node *node, int value) {
   if (!node) {
     return NULL;
   }
@@ -121,63 +124,63 @@ TreeNode *contains_node(TreeNode *node, int value) {
   }
 
   if (value < node->data) {
-    return contains_node(node->left, value);
+    return bst_find_node(node->left, value);
   } else if (value > node->data) {
-    return contains_node(node->right, value);
+    return bst_find_node(node->right, value);
   }
 
   return NULL;
 }
 
-void clear(BinarySearchTree *tree) {
+void bst_clear(bst_tree *tree) {
   if (!tree) return;
 
-  tree->root = clear_bst(tree->root);
+  tree->root = bst_clear_nodes(tree->root);
 }
 
-TreeNode *clear_bst(TreeNode *node) {
+bst_node *bst_clear_nodes(bst_node *node) {
   if (!node) {
     return NULL;
   }
-  node->left = clear_bst(node->left);
-  node->right = clear_bst(node->right);
+  node->left = bst_clear_nodes(node->left);
+  node->right = bst_clear_nodes(node->right);
   free(node);
 
   return NULL;
 }
 
-int height(const BinarySearchTree *tree) {
+int bst_height(const bst_tree *tree) {
   if (!tree) return -1;
-  return height_helper(tree->root);
+  return bst_height_node(tree->root);
 }
 
-int height_helper(TreeNode *node) {
+int bst_height_node(bst_node *node) {
   if (!node) {
     return -1;
   }
 
-  int leftHeight = height_helper(node->left);
-  int rightHeight = height_helper(node->right);
+  int left_height = bst_height_node(node->left);
+  int right_height = bst_height_node(node->right);
 
-  return 1 + ((leftHeight > rightHeight) ? leftHeight : rightHeight);
+  return 1 + ((left_height > right_height) ? left_height : right_height);
 }
 
-bool isLeaf(const TreeNode *node) {
+bool bst_is_leaf(const bst_node *node) {
   if (node->left == NULL && node->right == NULL) {
     return true;
   }
   return false;
 }
 
-size_t size(const BinarySearchTree *tree) {
+size_t bst_size(const bst_tree *tree) {
   return (tree ? tree->size : 0);
 }
 
-bool empty(const BinarySearchTree *tree) {
+bool bst_empty(const bst_tree *tree) {
   return (!tree || tree->size == 0);
 }
 
-int *in_order_traversal(const BinarySearchTree *tree, size_t *out_size) {
+int *bst_in_order(const bst_tree *tree, size_t *out_size) {
   if (!tree || !tree->root) {
     return NULL;
   }
@@ -185,18 +188,18 @@ int *in_order_traversal(const BinarySearchTree *tree, size_t *out_size) {
   int *array = NULL;
   size_t size = 0;
 
-  in_order_helper(tree->root, &array, &size);
+  bst_in_order_helper(tree->root, &array, &size);
 
   *out_size = size;
   return array;
 }
 
-void in_order_helper(TreeNode *node, int **array, size_t *size) {
+void bst_in_order_helper(bst_node *node, int **array, size_t *size) {
   if (!node) {
     return;
   }
 
-  in_order_helper(node->left, array, size);
+  bst_in_order_helper(node->left, array, size);
   int *temp = realloc(*array, (*size + 1) * sizeof(int));
   if (!temp) {
     free(*array);
@@ -207,10 +210,10 @@ void in_order_helper(TreeNode *node, int **array, size_t *size) {
   (*array)[*size] = node->data;
   (*size)++;
 
-  in_order_helper(node->right, array, size);
+  bst_in_order_helper(node->right, array, size);
 }
 
-int *pre_order_traversal(const BinarySearchTree *tree, size_t *out_size) {
+int *bst_pre_order(const bst_tree *tree, size_t *out_size) {
   if (!tree || !tree->root) {
     return NULL;
   }
@@ -218,13 +221,13 @@ int *pre_order_traversal(const BinarySearchTree *tree, size_t *out_size) {
   int *array = NULL;
   size_t size = 0;
 
-  pre_order_helper(tree->root, &array, &size);
+  bst_pre_order_helper(tree->root, &array, &size);
 
   *out_size = size;
   return array;
 }
 
-void pre_order_helper(TreeNode *node, int **array, size_t *size) {
+void bst_pre_order_helper(bst_node *node, int **array, size_t *size) {
   if (!node) {
     return;
   }
@@ -239,11 +242,11 @@ void pre_order_helper(TreeNode *node, int **array, size_t *size) {
   (*array)[*size] = node->data;
   (*size)++;
 
-  pre_order_helper(node->left, array, size);
-  pre_order_helper(node->right, array, size);
+  bst_pre_order_helper(node->left, array, size);
+  bst_pre_order_helper(node->right, array, size);
 }
 
-int *post_order_traversal(const BinarySearchTree *tree, size_t *out_size) {
+int *bst_post_order(const bst_tree *tree, size_t *out_size) {
   if (!tree || !tree->root) {
     return NULL;
   }
@@ -251,19 +254,19 @@ int *post_order_traversal(const BinarySearchTree *tree, size_t *out_size) {
   int *array = NULL;
   size_t size = 0;
 
-  post_order_helper(tree->root, &array, &size);
+  bst_post_order_helper(tree->root, &array, &size);
 
   *out_size = size;
   return array;
 }
 
-void post_order_helper(TreeNode *node, int **array, size_t *size) {
+void bst_post_order_helper(bst_node *node, int **array, size_t *size) {
   if (!node) {
     return;
   }
 
-  post_order_helper(node->left, array, size);
-  post_order_helper(node->right, array, size);
+  bst_post_order_helper(node->left, array, size);
+  bst_post_order_helper(node->right, array, size);
   int *temp = realloc(*array, (*size + 1) * sizeof(int));
   if (!temp) {
     free(*array);
