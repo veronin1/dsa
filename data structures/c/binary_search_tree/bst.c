@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 
-BinarySearchTree *createTree(const size_t size) {
+BinarySearchTree *createTree(void) {
   BinarySearchTree *tree = malloc(sizeof(BinarySearchTree));
   if (tree == NULL) {
     return NULL;
