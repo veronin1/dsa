@@ -160,3 +160,34 @@ void in_order_helper(TreeNode *node, int **array, size_t *size) {
 
   in_order_helper(node->right, array, size);
 }
+
+int *pre_order_traversal(const BinarySearchTree *tree, size_t *out_size) {
+  if (!tree || !tree->root) {
+    return NULL;
+  }
+
+  int *array = NULL;
+  size_t size = 0;
+
+  pre_order_helper(tree->root, &array, &size);
+
+  *out_size = size;
+  return array;
+}
+
+void pre_order_helper(TreeNode *node, int **array, size_t *size) {
+  if (!node) {
+    return;
+  }
+
+  int *temp = realloc(*array, (*size + 1) * sizeof(int));
+  if (!temp) {
+    return;
+  }
+  *array = temp;
+  (*array)[*size] = node->data;
+  (*size)++;
+
+  pre_order_helper(node->left, array, size);
+  pre_order_helper(node->right, array, size);
+}
