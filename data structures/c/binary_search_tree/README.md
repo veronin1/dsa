@@ -2,36 +2,38 @@
 
 A binary search tree is a tree data structure that satisfies the binary search tree property. This is that every value to the left of a node is less than or equal to the nodes value. The opposite is applicable to the right side, where every node is greater than or equal to the nodes value. 
 
+---
+
 ## Interface
 
 The BST can be interfaced through the following methods:
 
-- `BinarySearchTree *createTree(void)`: Creates and returns empty BST
-- `void destroyTree(BinarySearchTree *tree)`: Frees all nodes and BST struct
-- `void insert(BinarySearchTree *tree, const int element)`: Inserts value into BST and updates size
-- `void remove_node(BinarySearchTree *tree, int value)`: Removes node with value and updates size
-- `bool contains(const BinarySearchTree *tree, int value)`: Returns true if value exists in BST
-- `void clear(BinarySearchTree *tree)`: Removes all nodes but keeps BST struct
-- `int height(const BinarySearchTree *tree)`: Returns height of BST
-- `bool empty(const BinarySearchTree *tree)`: Returns true if BST is empty
-- `size_t size(const BinarySearchTree *tree)`: Returns number of nodes in BST
-- `int *in_order_traversal(const BinarySearchTree *tree, size_t *out_size)`: Returns array of values in in-order
-- `int *pre_order_traversal(const BinarySearchTree *tree, size_t *out_size)`: Returns array of values in pre-order
-- `int *post_order_traversal(const BinarySearchTree *tree, size_t *out_size)`: Returns array of values in post-order
+* `bst_tree *bst_create(void)`: Creates and returns an empty BST.
+* `void bst_destroy(bst_tree *tree)`: Frees all nodes and BST struct.
+* `void bst_insert(bst_tree *tree, int value)`: Inserts a value into the BST and updates the size.
+* `void bst_remove(bst_tree *tree, int value)`: Removes a node with the given value and updates the size.
+* `bool bst_contains(const bst_tree *tree, int value)`: Returns `true` if the value exists in the BST.
+* `void bst_clear(bst_tree *tree)`: Removes all nodes but keeps the BST struct.
+* `int bst_height(const bst_tree *tree)`: Returns the height of the BST.
+* `bool bst_empty(const bst_tree *tree)`: Returns `true` if the BST is empty.
+* `size_t bst_size(const bst_tree *tree)`: Returns the number of nodes in the BST.
+* `int *bst_in_order(const bst_tree *tree, size_t *out_size)`: Returns an array of values in in-order traversal.
+* `int *bst_pre_order(const bst_tree *tree, size_t *out_size)`: Returns an array of values in pre-order traversal.
+* `int *bst_post_order(const bst_tree *tree, size_t *out_size)`: Returns an array of values in post-order traversal.
 
 ### Internal Methods for BST Logic
 
-- `TreeNode *create_node(int value)`: Allocates and returns new node with value
-- `TreeNode *insert_node(TreeNode *node, int value)`: Recursively inserts value in proper position
-- `TreeNode *delete_node(TreeNode *root, int value)`: Recursive helper to delete node and restructure tree
-- `TreeNode *find_min(TreeNode *node)`: Returns node with smallest value in subtree
-- `TreeNode *contains_node(TreeNode *node, int value)`: Recursively checks if value exists in subtree
-- `TreeNode *clear_bst(TreeNode *node)`: Recursively frees all nodes and returns NULL
-- `int height_helper(TreeNode *node)`: Recursive helper to calculate height
-- `bool isLeaf(const TreeNode *node)`: Returns true if node has no children
-- `void in_order_helper(TreeNode *node, int **array, size_t *size)`: Recursive helper for in-order traversal
-- `void pre_order_helper(TreeNode *node, int **array, size_t *size)`: Recursive helper for pre-order traversal
-- `void post_order_helper(TreeNode *node, int **array, size_t *size)`: Recursive helper for post-order traversal
+* `bst_node *bst_node_create(int value)`: Allocates and returns a new node with the given value.
+* `bst_node *bst_insert_node(bst_node *node, int value)`: Recursively inserts the value into the proper position starting from the given node.
+* `bst_node *bst_delete_node(bst_node *node, int value)`: Recursive helper to delete a node and restructure the subtree.
+* `bst_node *bst_find_min(bst_node *node)`: Returns the node with the smallest value in the subtree.
+* `bst_node *bst_find_node(bst_node *node, int value)`: Recursively checks if the value exists in the subtree and returns the node if found.
+* `bst_node *bst_clear_nodes(bst_node *node)`: Recursively frees all nodes in the subtree and returns `NULL`.
+* `int bst_height_node(bst_node *node)`: Recursive helper to calculate height from a given node.
+* `bool bst_is_leaf(const bst_node *node)`: Returns `true` if the node has no children.
+* `void bst_in_order_helper(bst_node *node, int **array, size_t *size)`: Recursive helper for in-order traversal.
+* `void bst_pre_order_helper(bst_node *node, int **array, size_t *size)`: Recursive helper for pre-order traversal.
+* `void bst_post_order_helper(bst_node *node, int **array, size_t *size)`: Recursive helper for post-order traversal.
 
 ## Compilation & Run
 
