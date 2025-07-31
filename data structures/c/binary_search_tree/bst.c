@@ -34,8 +34,9 @@ void insert(BinarySearchTree *tree, const int element) {
     return;
   }
 
+  bool exists = contains(tree, element);
   tree->root = insert_node(tree->root, element);
-  tree->size++;
+  if (!exists) tree->size++;
 }
 
 TreeNode *insert_node(TreeNode *node, int value) {
