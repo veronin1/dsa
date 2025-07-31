@@ -150,7 +150,11 @@ void in_order_helper(TreeNode *node, int **array, size_t *size) {
   }
 
   in_order_helper(node->left, array, size);
-  *array = realloc(*array, (*size + 1) * sizeof(int));
+  int *temp = realloc(*array, (*size + 1) * sizeof(int));
+  if (!temp) {
+    return;
+  }
+  *array = temp;
   (*array)[*size] = node->data;
   (*size)++;
 
