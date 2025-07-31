@@ -22,6 +22,12 @@ void insert(BinarySearchTree *tree, const int element) {
   tree->size++;
 }
 
+void destroyTree(BinarySearchTree *tree) {
+  if (!tree) return;
+  clear(tree);
+  free(tree);
+}
+
 TreeNode *insert_node(TreeNode *node, int value) {
   if (node == NULL) {
     TreeNode *new_node = malloc(sizeof(TreeNode));
@@ -47,8 +53,11 @@ void remove_node(BinarySearchTree *tree, int value) {
     return;
   }
 
+  TreeNode *prev_root = tree->root;
   tree->root = delete_node(tree->root, value);
-  tree->size--;
+  if (prev_root != tree->root || contains_node(prev_root, value)) {
+    tree->size--;
+  }
 }
 
 TreeNode *find_min(TreeNode *node) {
