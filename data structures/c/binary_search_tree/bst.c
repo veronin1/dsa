@@ -135,6 +135,37 @@ TreeNode *clear_bst(TreeNode *node) {
   return NULL;
 }
 
+int height(const BinarySearchTree *tree) {
+  if (!tree) return -1;
+  return height_helper(tree->root);
+}
+
+int height_helper(TreeNode *node) {
+  if (!node) {
+    return -1;
+  }
+
+  int leftHeight = 0;
+  int rightHeight = 0;
+  int height = 0;
+  if (!isLeaf(node)) {
+    height_helper(node->left);
+    leftHeight++;
+    height_helper(node->right);
+    rightHeight++;
+  }
+
+  height = (leftHeight > rightHeight) ? leftHeight : rightHeight;
+  return height++;
+}
+
+bool isLeaf(const TreeNode *node) {
+  if (node->left == NULL && node->right == NULL) {
+    return true;
+  }
+  return false;
+}
+
 size_t size(const BinarySearchTree *tree) {
   return tree->size;
 }
@@ -165,6 +196,8 @@ void in_order_helper(TreeNode *node, int **array, size_t *size) {
   in_order_helper(node->left, array, size);
   int *temp = realloc(*array, (*size + 1) * sizeof(int));
   if (!temp) {
+    free(*array);
+    *array = NULL;
     return;
   }
   *array = temp;
@@ -195,6 +228,8 @@ void pre_order_helper(TreeNode *node, int **array, size_t *size) {
 
   int *temp = realloc(*array, (*size + 1) * sizeof(int));
   if (!temp) {
+    free(*array);
+    *array = NULL;
     return;
   }
   *array = temp;
@@ -228,6 +263,8 @@ void post_order_helper(TreeNode *node, int **array, size_t *size) {
   post_order_helper(node->right, array, size);
   int *temp = realloc(*array, (*size + 1) * sizeof(int));
   if (!temp) {
+    free(*array);
+    *array = NULL;
     return;
   }
 
