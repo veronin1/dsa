@@ -13,6 +13,22 @@ BinarySearchTree *createTree(void) {
   return tree;
 }
 
+void destroyTree(BinarySearchTree *tree) {
+  if (!tree) return;
+  clear(tree);
+  free(tree);
+}
+
+TreeNode *create_node(int value) {
+  TreeNode *node = (TreeNode *) malloc(sizeof(TreeNode));
+  if (!node) return NULL;
+
+  node->data = value;
+  node->left = NULL;
+  node->right = NULL;
+  return node;
+}
+
 void insert(BinarySearchTree *tree, const int element) {
   if (tree == NULL) {
     return;
@@ -20,12 +36,6 @@ void insert(BinarySearchTree *tree, const int element) {
 
   tree->root = insert_node(tree->root, element);
   tree->size++;
-}
-
-void destroyTree(BinarySearchTree *tree) {
-  if (!tree) return;
-  clear(tree);
-  free(tree);
 }
 
 TreeNode *insert_node(TreeNode *node, int value) {

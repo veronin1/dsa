@@ -17,6 +17,7 @@ typedef struct {
 
 BinarySearchTree *createTree(void);
 void destroyTree(BinarySearchTree *tree);
+TreeNode *create_node(int value);
 
 void insert(BinarySearchTree *tree, int value);
 TreeNode *insert_node(TreeNode *node, int value);
