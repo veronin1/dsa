@@ -145,18 +145,10 @@ int height_helper(TreeNode *node) {
     return -1;
   }
 
-  int leftHeight = 0;
-  int rightHeight = 0;
-  int height = 0;
-  if (!isLeaf(node)) {
-    height_helper(node->left);
-    leftHeight++;
-    height_helper(node->right);
-    rightHeight++;
-  }
+  int leftHeight = height_helper(node->left);
+  int rightHeight = height_helper(node->right);
 
-  height = (leftHeight > rightHeight) ? leftHeight : rightHeight;
-  return height++;
+  return 1 + ((leftHeight > rightHeight) ? leftHeight : rightHeight);
 }
 
 bool isLeaf(const TreeNode *node) {
