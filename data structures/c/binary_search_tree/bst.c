@@ -119,7 +119,20 @@ TreeNode *contains_node(TreeNode *node, int value) {
 }
 
 void clear(BinarySearchTree *tree) {
-  return;
+  if (!tree) return;
+
+  tree->root = clear_bst(tree->root);
+}
+
+TreeNode *clear_bst(TreeNode *node) {
+  if (!node) {
+    return NULL;
+  }
+  node->left = clear_bst(node->left);
+  node->right = clear_bst(node->right);
+  free(node);
+
+  return NULL;
 }
 
 size_t size(const BinarySearchTree *tree) {
@@ -190,4 +203,35 @@ void pre_order_helper(TreeNode *node, int **array, size_t *size) {
 
   pre_order_helper(node->left, array, size);
   pre_order_helper(node->right, array, size);
+}
+
+int *post_order_traversal(const BinarySearchTree *tree, size_t *out_size) {
+  if (!tree || !tree->root) {
+    return NULL;
+  }
+
+  int *array = NULL;
+  size_t size = 0;
+
+  post_order_helper(tree->root, &array, &size);
+
+  *out_size = size;
+  return array;
+}
+
+void post_order_helper(TreeNode *node, int **array, size_t *size) {
+  if (!node) {
+    return;
+  }
+
+  post_order_helper(node->left, array, size);
+  post_order_helper(node->right, array, size);
+  int *temp = realloc(*array, (*size + 1) * sizeof(int));
+  if (!temp) {
+    return;
+  }
+
+  *array = temp;
+  (*array)[*size] = node->data;
+  (*size)++;
 }
