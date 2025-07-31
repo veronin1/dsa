@@ -64,11 +64,9 @@ void remove_node(BinarySearchTree *tree, int value) {
     return;
   }
 
-  TreeNode *prev_root = tree->root;
+  bool deleted = false;
   tree->root = delete_node(tree->root, value);
-  if (prev_root != tree->root || contains_node(prev_root, value)) {
-    tree->size--;
-  }
+  if (deleted) tree->size--;
 }
 
 TreeNode *find_min(TreeNode *node) {
