@@ -41,14 +41,7 @@ void insert(BinarySearchTree *tree, const int element) {
 
 TreeNode *insert_node(TreeNode *node, int value) {
   if (node == NULL) {
-    TreeNode *new_node = malloc(sizeof(TreeNode));
-    if (!new_node) return NULL;
-
-    new_node->data = value;
-    new_node->left = NULL;
-    new_node->right = NULL;
-
-    return new_node;
+    return create_node(value);
   }
 
   if (value > node->data) {
