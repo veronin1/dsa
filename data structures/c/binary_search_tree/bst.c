@@ -118,10 +118,41 @@ TreeNode *contains_node(TreeNode *node, int value) {
   return NULL;
 }
 
+void clear(BinarySearchTree *tree) {
+  return;
+}
+
 size_t size(const BinarySearchTree *tree) {
   return tree->size;
 }
 
 bool empty(const BinarySearchTree *tree) {
   return tree->size == 0;
+}
+
+int *in_order_traversal(const BinarySearchTree *tree, size_t *out_size) {
+  if (!tree || !tree->root) {
+    return NULL;
+  }
+
+  int *array = NULL;
+  size_t size = 0;
+
+  in_order_helper(tree->root, &array, &size);
+
+  *out_size = size;
+  return array;
+}
+
+void in_order_helper(TreeNode *node, int **array, size_t *size) {
+  if (!node) {
+    return;
+  }
+
+  in_order_helper(node->left, array, size);
+  *array = realloc(*array, (*size + 1) * sizeof(int));
+  (*array)[*size] = node->data;
+  (*size)++;
+
+  in_order_helper(node->right, array, size);
 }
